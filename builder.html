@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Siap Nikah • Hub &amp; Smart Builder Undangan Digital</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="assets/images/cropped-Kipa-Invitation-Jasa-Undangan-Website-Digital-Murah-Premium-terbaik-d-32x32.png" sizes="32x32">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #9f6b53;
+      --primary-dark: #814f39;
+      --primary-light: #f7efe9;
+      --accent: #d4a373;
+      --bg-surface: #ffffff;
+      --bg-subtle: #fbf9f8;
+      --bg-canvas: #f0eae6;
+      --text-main: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e7ded9;
+      --success: #10b981;
+      --radius: 12px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+      --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+      --shadow-lg: 0 12px 30px rgba(0,0,0,0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-canvas);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Navigation */
+    header {
+      background: var(--bg-surface);
+      border-bottom: 1px solid var(--border);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-badge {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      border-color: var(--border);
+      color: var(--text-main);
+    }
+
+    .btn-secondary:hover {
+      background: var(--bg-subtle);
+      border-color: #d1c4bd;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #ffffff;
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+    }
+
+    /* Mobile toggle bar (only visible on mobile) */
+    .mobile-tab-switch {
+      display: none;
+      background: #ffffff;
+      border-bottom: 1px solid var(--border);
+      padding: 6px;
+      gap: 6px;
+    }
+
+    .mobile-tab-btn {
+      flex: 1;
+      padding: 8px;
+      border: none;
+      background: transparent;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+
+    .mobile-tab-btn.active {
+      background: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    /* Main Split Layout */
+    .app-container {
+      flex: 1;
+      display: flex;
+      height: calc(100vh - 61px);
+      overflow: hidden;
+    }
+
+    /* Left Panel: Editor Hub */
+    .editor-panel {
+      flex: 1;
+      max-width: 680px;
+      background: var(--bg-surface);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    /* Tab Bar */
+    .tabs-bar {
+      display: flex;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-subtle);
+      padding: 0 16px;
+      overflow-x: auto;
+    }
+
+    .tab-item {
+      padding: 14px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-item:hover {
+      color: var(--primary-dark);
+    }
+
+    .tab-item.active {
+      color: var(--primary-dark);
+      border-bottom-color: var(--primary);
+      background: var(--bg-surface);
+    }
+
+    /* Tab Content Area */
+    .tab-content {
+      padding: 24px;
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Form Styles */
+    .section-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-group.full {
+      grid-column: span 2;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+
+    input[type="text"],
+    input[type="date"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      font-family: inherit;
+      color: var(--text-main);
+      background: #ffffff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(159, 107, 83, 0.15);
+    }
+
+    /* Template Cards Grid */
+    .template-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .template-card {
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      cursor: pointer;
+      background: #ffffff;
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .template-card.active {
+      border-color: var(--primary);
+      background: var(--primary-light);
+    }
+
+    .template-thumb {
+      width: 100%;
+      height: 140px;
+      border-radius: 8px;
+      object-fit: cover;
+      margin-bottom: 10px;
+      background: #e2dcd7;
+    }
+
+    .template-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .template-status {
+      font-size: 11px;
+      color: var(--primary-dark);
+      font-weight: 600;
+    }
+
+    /* Smart WebP Compressor Box */
+    .compressor-dropzone {
+      border: 2px dashed var(--primary);
+      background: var(--primary-light);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      margin-bottom: 20px;
+    }
+
+    .compressor-dropzone:hover {
+      background: #f1e4dc;
+    }
+
+    .compressor-icon {
+      width: 44px;
+      height: 44px;
+      fill: var(--primary);
+      margin: 0 auto 10px;
+    }
+
+    .compressor-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 4px;
+    }
+
+    .compressor-subtitle {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* Compression Stats Banner */
+    .savings-banner {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #065f46;
+      font-weight: 600;
+    }
+
+    .gallery-preview-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .gallery-preview-item {
+      position: relative;
+      border-radius: 8px;
+      overflow: hidden;
+      aspect-ratio: 1 / 1;
+      border: 1px solid var(--border);
+      background: #eee;
+    }
+
+    .gallery-preview-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .gallery-size-tag {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: rgba(0, 0, 0, 0.7);
+      color: #ffffff;
+      font-size: 9px;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Right Panel: Phone Simulator */
+    .preview-panel {
+      flex: 1.2;
+      background: var(--bg-canvas);
+      background-image: radial-gradient(#d8cfc9 1px, transparent 1px);
+      background-size: 16px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    .phone-simulator-frame {
+      width: 390px;
+      height: 780px;
+      background: #111111;
+      border-radius: 46px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3), 0 0 0 10px #262626, 0 0 0 12px #3f3f3f;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Smartphone Notch / Island */
+    .phone-island {
+      width: 110px;
+      height: 24px;
+      background: #111111;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 12px;
+      z-index: 50;
+    }
+
+    .preview-iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background: #ffffff;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #1f2937;
+      color: #ffffff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .app-container {
+        flex-direction: column;
+        height: auto;
+      }
+      .mobile-tab-switch {
+        display: flex;
+      }
+      .editor-panel {
+        max-width: 100%;
+        display: block;
+      }
+      .preview-panel {
+        display: none;
+        padding: 16px 0;
+      }
+      .editor-panel.hidden-mobile {
+        display: none;
+      }
+      .preview-panel.visible-mobile {
+        display: flex;
+      }
+      .phone-simulator-frame {
+        width: 100%;
+        max-width: 380px;
+        height: 700px;
+        border-radius: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header>
+    <div class="brand-group">
+      <span class="brand-badge">Sandbox Lab</span>
+      <h1 class="brand-title">Siap Nikah • Hub Undangan Digital</h1>
+    </div>
+
+    <div class="header-actions">
+      <button id="btn-export-json" class="btn btn-secondary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect></svg>
+        Salin Konfigurasi JSON
+      </button>
+
+      <a href="index.html" target="_blank" class="btn btn-primary">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+        Buka Fullscreen
+      </a>
+    </div>
+  </header>
+
+  <!-- Mobile View Switcher (Handphone) -->
+  <div class="mobile-tab-switch">
+    <button id="m-btn-editor" class="mobile-tab-btn active">✏️ Edit Data</button>
+    <button id="m-btn-preview" class="mobile-tab-btn">📱 Lihat Pratinjau HP</button>
+  </div>
+
+  <!-- App Body Split View -->
+  <div class="app-container">
+
+    <!-- LEFT: Hub Editor Form -->
+    <div id="editor-panel" class="editor-panel">
+      <!-- Tabs Navigation -->
+      <div class="tabs-bar">
+        <div class="tab-item active" data-tab="tab-templates">🎨 Template</div>
+        <div class="tab-item" data-tab="tab-mempelai">👥 Mempelai</div>
+        <div class="tab-item" data-tab="tab-acara">📅 Acara &amp; Lokasi</div>
+        <div class="tab-item" data-tab="tab-galeri">🖼️ Galeri (Auto-WebP)</div>
+        <div class="tab-item" data-tab="tab-rekening">💳 Rekening &amp; Kado</div>
+        <div class="tab-item" data-tab="tab-tamu">✉️ Uji Tamu</div>
+      </div>
+
+      <!-- Tab 1: Template Selection -->
+      <div id="tab-templates" class="tab-content active">
+        <h2 class="section-title">Pilih Tema &amp; Desain Undangan</h2>
+        <p class="section-desc">Pilih template yang paling sesuai dengan konsep pernikahan Anda. Data tidak akan hilang saat berganti template.</p>
+
+        <div class="template-grid">
+          <div class="template-card active">
+            <img src="assets/images/Art-8-bg-1.jpg" alt="Botanical Vintage" class="template-thumb">
+            <div class="template-name">Botanical Vintage</div>
+            <div class="template-status">✓ Aktif Digunakan</div>
+          </div>
+
+          <div class="template-card" style="opacity: 0.75;">
+            <div class="template-thumb" style="display:flex; align-items:center; justify-content:center; background:#efe8e4; color:#888; font-weight:600;">Coming Soon</div>
+            <div class="template-name">Modern Minimalist</div>
+            <div class="template-status" style="color:#888;">Segera Hadir</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 2: Mempelai -->
+      <div id="tab-mempelai" class="tab-content">
+        <h2 class="section-title">Informasi Calon Mempelai</h2>
+        <p class="section-desc">Sesuaikan nama calon pengantin, nama orang tua, dan akun media sosial.</p>
+
+        <h3 style="font-size:14px; font-weight:700; margin:16px 0 10px; color:var(--primary);">👰 Mempelai Wanita</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="input-bride-name" value="Kania Safitri">
+          </div>
+          <div class="form-group">
+            <label>Nama Panggilan</label>
+            <input type="text" id="input-bride-nick" value="Kania">
+          </div>
+          <div class="form-group full">
+            <label>Putri dari (Orang Tua)</label>
+            <input type="text" id="input-bride-parents" value="Putri dari Bpk. Abbas">
+          </div>
+          <div class="form-group full">
+            <label>Username Instagram</label>
+            <input type="text" id="input-bride-ig" value="@kaniasafitri_">
+          </div>
+        </div>
+
+        <h3 style="font-size:14px; font-weight:700; margin:24px 0 10px; color:var(--primary);">🤵 Mempelai Pria</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nama Lengkap</label>
+            <input type="text" id="input-groom-name" value="Mohammad Irfan Maulana">
+          </div>
+          <div class="form-group">
+            <label>Nama Panggilan</label>
+            <input type="text" id="input-groom-nick" value="Irfan">
+          </div>
+          <div class="form-group full">
+            <label>Putra dari (Orang Tua)</label>
+            <input type="text" id="input-groom-parents" value="Putra dari Bpk. Cadmadi (alm.) & Ibu Toipah">
+          </div>
+          <div class="form-group full">
+            <label>Username Instagram</label>
+            <input type="text" id="input-groom-ig" value="@mohammadirfanmaulana">
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Acara & Lokasi -->
+      <div id="tab-acara" class="tab-content">
+        <h2 class="section-title">Waktu &amp; Lokasi Acara</h2>
+        <p class="section-desc">Atur waktu pelaksanaan Akad Nikah dan Resepsi serta link navigasi Google Maps.</p>
+
+        <h3 style="font-size:14px; font-weight:700; margin:16px 0 10px; color:var(--primary);">💍 Akad Nikah</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Hari &amp; Tanggal</label>
+            <input type="text" id="input-akad-date" value="Sabtu, 22 November 2025">
+          </div>
+          <div class="form-group">
+            <label>Waktu / Jam</label>
+            <input type="text" id="input-akad-time" value="Pukul 07.30 WIB">
+          </div>
+          <div class="form-group full">
+            <label>Tempat / Gedung</label>
+            <input type="text" id="input-akad-venue" value="The Newton Hotel Bandung">
+          </div>
+          <div class="form-group full">
+            <label>Link Google Maps</label>
+            <input type="text" id="input-akad-maps" value="https://maps.app.goo.gl/kNFfnaV5ggH7zYF58">
+          </div>
+        </div>
+
+        <h3 style="font-size:14px; font-weight:700; margin:24px 0 10px; color:var(--primary);">🎉 Resepsi Pernikahan</h3>
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Hari &amp; Tanggal</label>
+            <input type="text" id="input-resepsi-date" value="Sabtu, 22 November 2025">
+          </div>
+          <div class="form-group">
+            <label>Waktu / Jam</label>
+            <input type="text" id="input-resepsi-time" value="Pukul 11.00 - 14.00 WIB">
+          </div>
+          <div class="form-group full">
+            <label>Tempat / Gedung</label>
+            <input type="text" id="input-resepsi-venue" value="The Newton Hotel Bandung">
+          </div>
+          <div class="form-group full">
+            <label>Link Google Maps</label>
+            <input type="text" id="input-resepsi-maps" value="https://maps.app.goo.gl/kNFfnaV5ggH7zYF58">
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 4: Galeri & Auto-WebP Compressor -->
+      <div id="tab-galeri" class="tab-content">
+        <h2 class="section-title">Galeri Foto Prewedding (Auto-WebP)</h2>
+        <p class="section-desc">Pilih foto kamera HP Anda. Sistem akan <b>secara otomatis mengubahnya menjadi format .webp berkualitas tinggi berukuran kecil</b> langsung di browser sebelum disimpan!</p>
+
+        <!-- Dropzone / File Picker -->
+        <div id="dropzone" class="compressor-dropzone">
+          <input type="file" id="file-uploader" accept="image/*" multiple style="display:none;">
+          <svg class="compressor-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
+          <div class="compressor-title">Klik atau Tarik Foto ke Sini</div>
+          <div class="compressor-subtitle">Mendukung JPEG, PNG, HEIC kamera HP (Otomatis dikompres ke WebP ~150 KB)</div>
+        </div>
+
+        <!-- Savings Calculator Banner -->
+        <div id="savings-banner" class="savings-banner" style="display:none;">
+          <div>
+            <span>⚡ Penghematan Storage: </span>
+            <span id="savings-percent">0%</span>
+          </div>
+          <div style="font-size:11px; opacity:0.85;">
+            <span id="savings-raw">0 MB</span> ➔ <span id="savings-webp">0 KB</span>
+          </div>
+        </div>
+
+        <!-- Compressed Gallery Preview Grid -->
+        <h4 style="font-size:12px; font-weight:700; color:var(--text-muted); text-transform:uppercase; margin-top:16px;">Pratinjau Foto WebP</h4>
+        <div id="gallery-preview-grid" class="gallery-preview-grid">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Tab 5: Rekening & Kado -->
+      <div id="tab-rekening" class="tab-content">
+        <h2 class="section-title">Amplop Digital (Cashless Gift)</h2>
+        <p class="section-desc">Informasi nomor rekening untuk tamu yang ingin memberikan hadiah secara non-tunai.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Bank</label>
+            <select id="input-bank-name">
+              <option value="BCA" selected>BCA (Bank Central Asia)</option>
+              <option value="Mandiri">Bank Mandiri</option>
+              <option value="BRI">BRI</option>
+              <option value="BNI">BNI</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Nomor Rekening</label>
+            <input type="text" id="input-bank-number" value="4372303623">
+          </div>
+          <div class="form-group full">
+            <label>Atas Nama Pemilik Rekening</label>
+            <input type="text" id="input-bank-holder" value="Kania Safitri">
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab 6: Uji Tamu Undangan -->
+      <div id="tab-tamu" class="tab-content">
+        <h2 class="section-title">Uji Coba Nama Tamu Undangan</h2>
+        <p class="section-desc">Ketik nama siapa pun di bawah ini untuk melihat bagaimana sampul depan dan barcode QR check-in berubah secara dinamis.</p>
+
+        <div class="form-group">
+          <label>Nama Tamu yang Diuji</label>
+          <input type="text" id="input-test-guest" value="Ocha Geniarsyah" placeholder="Contoh: Budi Santoso &amp; Partner">
+        </div>
+
+        <div style="background:var(--bg-subtle); border:1px solid var(--border); border-radius:8px; padding:12px; font-size:13px; color:var(--text-muted);">
+          <b>💡 Cara Kerja di Produksi:</b><br>
+          Link yang dikirimkan ke tamu cukup ditambahkan akhiran:<br>
+          <code>?to=<span id="guest-url-preview">Ocha+Geniarsyah</span></code>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Phone Simulator Preview -->
+    <div id="preview-panel" class="preview-panel">
+      <div class="phone-simulator-frame">
+        <div class="phone-island"></div>
+        <iframe id="preview-iframe" class="preview-iframe" src="index.html"></iframe>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Konfigurasi berhasil disimpan!</div>
+
+  <!-- JavaScript: Builder & Client-side WebP Compressor Engine -->
+  <script>
+    // State Store
+    const state = {
+      bride: {
+        name: 'Kania Safitri',
+        nickname: 'Kania',
+        parents: 'Putri dari Bpk. Abbas',
+        instagram: '@kaniasafitri_',
+        photo: null
+      },
+      groom: {
+        name: 'Mohammad Irfan Maulana',
+        nickname: 'Irfan',
+        parents: 'Putra dari Bpk. Cadmadi (alm.) & Ibu Toipah',
+        instagram: '@mohammadirfanmaulana',
+        photo: null
+      },
+      weddingDate: 'SABTU, 22 NOVEMBER 2025',
+      akad: {
+        date: 'Sabtu, 22 November 2025',
+        time: 'Pukul 07.30 WIB',
+        venue: 'The Newton Hotel Bandung',
+        maps: 'https://maps.app.goo.gl/kNFfnaV5ggH7zYF58'
+      },
+      resepsi: {
+        date: 'Sabtu, 22 November 2025',
+        time: 'Pukul 11.00 - 14.00 WIB',
+        venue: 'The Newton Hotel Bandung',
+        maps: 'https://maps.app.goo.gl/kNFfnaV5ggH7zYF58'
+      },
+      bank: {
+        name: 'BCA',
+        number: '4372303623',
+        holder: 'Kania Safitri'
+      },
+      gallery: [],
+      testGuest: 'Ocha Geniarsyah'
+    };
+
+    // Load saved draft if present
+    try {
+      const saved = localStorage.getItem('wedding_custom_data');
+      if (saved) {
+        Object.assign(state, JSON.parse(saved));
+      }
+    } catch(e) {}
+
+    const iframe = document.getElementById('preview-iframe');
+
+    // Send update to iframe
+    function syncPreview() {
+      // Save state
+      localStorage.setItem('wedding_custom_data', JSON.stringify(state));
+
+      // PostMessage to iframe
+      if (iframe && iframe.contentWindow) {
+        iframe.contentWindow.postMessage({
+          type: 'UPDATE_INVITATION_DATA',
+          payload: state
+        }, '*');
+      }
+    }
+
+    // Tab Switching
+    const tabItems = document.querySelectorAll('.tab-item');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabItems.forEach(item => {
+      item.addEventListener('click', () => {
+        tabItems.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        item.classList.add('active');
+        const target = item.getAttribute('data-tab');
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    // Mobile View Toggle
+    const mBtnEditor = document.getElementById('m-btn-editor');
+    const mBtnPreview = document.getElementById('m-btn-preview');
+    const editorPanel = document.getElementById('editor-panel');
+    const previewPanel = document.getElementById('preview-panel');
+
+    mBtnEditor.addEventListener('click', () => {
+      mBtnEditor.classList.add('active');
+      mBtnPreview.classList.remove('active');
+      editorPanel.classList.remove('hidden-mobile');
+      previewPanel.classList.remove('visible-mobile');
+    });
+
+    mBtnPreview.addEventListener('click', () => {
+      mBtnPreview.classList.add('active');
+      mBtnEditor.classList.remove('active');
+      editorPanel.classList.add('hidden-mobile');
+      previewPanel.classList.add('visible-mobile');
+    });
+
+    // Form Binding Helper
+    function bindInput(id, callback) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', () => {
+          callback(el.value);
+          syncPreview();
+        });
+      }
+    }
+
+    // Bride Bindings
+    bindInput('input-bride-name', val => state.bride.name = val);
+    bindInput('input-bride-nick', val => state.bride.nickname = val);
+    bindInput('input-bride-parents', val => state.bride.parents = val);
+    bindInput('input-bride-ig', val => state.bride.instagram = val);
+
+    // Groom Bindings
+    bindInput('input-groom-name', val => state.groom.name = val);
+    bindInput('input-groom-nick', val => state.groom.nickname = val);
+    bindInput('input-groom-parents', val => state.groom.parents = val);
+    bindInput('input-groom-ig', val => state.groom.instagram = val);
+
+    // Akad & Resepsi Bindings
+    bindInput('input-akad-date', val => state.akad.date = val);
+    bindInput('input-akad-time', val => state.akad.time = val);
+    bindInput('input-akad-venue', val => state.akad.venue = val);
+    bindInput('input-akad-maps', val => state.akad.maps = val);
+
+    bindInput('input-resepsi-date', val => state.resepsi.date = val);
+    bindInput('input-resepsi-time', val => state.resepsi.time = val);
+    bindInput('input-resepsi-venue', val => state.resepsi.venue = val);
+    bindInput('input-resepsi-maps', val => state.resepsi.maps = val);
+
+    // Bank Bindings
+    bindInput('input-bank-name', val => state.bank.name = val);
+    bindInput('input-bank-number', val => state.bank.number = val);
+    bindInput('input-bank-holder', val => state.bank.holder = val);
+
+    // Guest Test Binding
+    bindInput('input-test-guest', val => {
+      state.testGuest = val;
+      const preview = document.getElementById('guest-url-preview');
+      if (preview) preview.textContent = encodeURIComponent(val.trim()).replace(/%20/g, '+');
+    });
+
+    // =========================================================================
+    // SMART CLIENT-SIDE WEBP COMPRESSOR
+    // =========================================================================
+    const dropzone = document.getElementById('dropzone');
+    const fileUploader = document.getElementById('file-uploader');
+    const galleryGrid = document.getElementById('gallery-preview-grid');
+    const savingsBanner = document.getElementById('savings-banner');
+    const savingsPercent = document.getElementById('savings-percent');
+    const savingsRaw = document.getElementById('savings-raw');
+    const savingsWebp = document.getElementById('savings-webp');
+
+    let totalRawBytes = 0;
+    let totalWebpBytes = 0;
+
+    dropzone.addEventListener('click', () => fileUploader.click());
+
+    dropzone.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      dropzone.style.background = '#e9dacd';
+    });
+
+    dropzone.addEventListener('dragleave', () => {
+      dropzone.style.background = 'var(--primary-light)';
+    });
+
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.style.background = 'var(--primary-light)';
+      if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+        handleImageFiles(e.dataTransfer.files);
+      }
+    });
+
+    fileUploader.addEventListener('change', (e) => {
+      if (e.target.files && e.target.files.length > 0) {
+        handleImageFiles(e.target.files);
+      }
+    });
+
+    function formatKB(bytes) {
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
+    // HTML5 Canvas WebP Compression
+    function compressToWebP(file, maxWidth = 1080, quality = 0.8) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = (e) => {
+          const img = new Image();
+          img.src = e.target.result;
+          img.onload = () => {
+            let width = img.width;
+            let height = img.height;
+            if (width > maxWidth) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            }
+            const canvas = document.createElement('canvas');
+            canvas.width = width;
+            canvas.height = height;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(img, 0, 0, width, height);
+
+            const webpDataUrl = canvas.toDataURL('image/webp', quality);
+            // approximate size from base64
+            const head = 'data:image/webp;base64,';
+            const base64Len = webpDataUrl.length - head.length;
+            const webpSize = Math.round((base64Len * 3) / 4);
+
+            resolve({
+              dataUrl: webpDataUrl,
+              rawSize: file.size,
+              webpSize: webpSize
+            });
+          };
+          img.onerror = reject;
+        };
+        reader.onerror = reject;
+      });
+    }
+
+    async function handleImageFiles(files) {
+      showToast(`Mengompres ${files.length} foto ke format WebP...`);
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (!file.type.startsWith('image/')) continue;
+
+        try {
+          const result = await compressToWebP(file);
+          totalRawBytes += result.rawSize;
+          totalWebpBytes += result.webpSize;
+
+          state.gallery.push(result.dataUrl);
+
+          // Add thumbnail preview
+          const card = document.createElement('div');
+          card.className = 'gallery-preview-item';
+          card.innerHTML = `
+            <img src="${result.dataUrl}" alt="WebP Photo">
+            <span class="gallery-size-tag">${formatKB(result.webpSize)}</span>
+          `;
+          galleryGrid.appendChild(card);
+        } catch(err) {
+          console.error('Compression error:', err);
+        }
+      }
+
+      // Update Savings Banner
+      if (totalRawBytes > 0) {
+        savingsBanner.style.display = 'flex';
+        const savedPercent = (((totalRawBytes - totalWebpBytes) / totalRawBytes) * 100).toFixed(1);
+        savingsPercent.textContent = `${savedPercent}% Lebih Hemat!`;
+        savingsRaw.textContent = formatKB(totalRawBytes);
+        savingsWebp.textContent = formatKB(totalWebpBytes);
+      }
+
+      syncPreview();
+      showToast('Foto berhasil dikompres ke WebP dan disinkronkan!');
+    }
+
+    // Export JSON Configuration
+    const btnExport = document.getElementById('btn-export-json');
+    btnExport.addEventListener('click', () => {
+      const jsonStr = JSON.stringify(state, null, 2);
+      navigator.clipboard.writeText(jsonStr).then(() => {
+        showToast('Konfigurasi JSON berhasil disalin ke clipboard!');
+      }).catch(() => {
+        showToast('Konfigurasi berhasil disimpan!');
+      });
+    });
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.textContent = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 2800);
+    }
+
+    // Iframe onload sync
+    iframe.addEventListener('load', () => {
+      setTimeout(syncPreview, 300);
+    });
+  </script>
+</body>
+</html>

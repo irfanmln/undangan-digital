@@ -375,4 +375,154 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
 
   revealElements.forEach(el => observer.observe(el));
+
+  // 10. Live Customization Receiver (from Builder Hub or LocalStorage)
+  function applyCustomData(data) {
+    if (!data) return;
+
+    // Bride
+    if (data.bride) {
+      if (data.bride.nickname) {
+        const coverBride = document.getElementById('cover-bride-name');
+        if (coverBride) coverBride.textContent = data.bride.nickname;
+      }
+      if (data.bride.name) {
+        const brideName = document.getElementById('bride-name');
+        if (brideName) brideName.textContent = data.bride.name;
+      }
+      if (data.bride.parents) {
+        const brideParents = document.getElementById('bride-parents');
+        if (brideParents) brideParents.innerHTML = data.bride.parents.replace(/\n/g, '<br>');
+      }
+      if (data.bride.instagram) {
+        const brideIgLink = document.getElementById('bride-ig-link');
+        const brideIgHandle = document.getElementById('bride-ig-handle');
+        const handle = data.bride.instagram.replace(/^@/, '');
+        if (brideIgLink) brideIgLink.href = `https://www.instagram.com/${handle}/`;
+        if (brideIgHandle) brideIgHandle.textContent = `@${handle}`;
+      }
+      if (data.bride.photo) {
+        const bridePhoto = document.getElementById('bride-photo');
+        if (bridePhoto) bridePhoto.src = data.bride.photo;
+      }
+    }
+
+    // Groom
+    if (data.groom) {
+      if (data.groom.nickname) {
+        const coverGroom = document.getElementById('cover-groom-name');
+        if (coverGroom) coverGroom.textContent = data.groom.nickname;
+      }
+      if (data.groom.name) {
+        const groomName = document.getElementById('groom-name');
+        if (groomName) groomName.textContent = data.groom.name;
+      }
+      if (data.groom.parents) {
+        const groomParents = document.getElementById('groom-parents');
+        if (groomParents) groomParents.innerHTML = data.groom.parents.replace(/\n/g, '<br>');
+      }
+      if (data.groom.instagram) {
+        const groomIgLink = document.getElementById('groom-ig-link');
+        const groomIgHandle = document.getElementById('groom-ig-handle');
+        const handle = data.groom.instagram.replace(/^@/, '');
+        if (groomIgLink) groomIgLink.href = `https://www.instagram.com/${handle}/`;
+        if (groomIgHandle) groomIgHandle.textContent = `@${handle}`;
+      }
+      if (data.groom.photo) {
+        const groomPhoto = document.getElementById('groom-photo');
+        if (groomPhoto) groomPhoto.src = data.groom.photo;
+      }
+    }
+
+    // Combined names (Hero & Closing)
+    const brideNick = (data.bride && data.bride.nickname) || 'Kania';
+    const groomNick = (data.groom && data.groom.nickname) || 'Irfan';
+    const heroNames = document.getElementById('hero-names');
+    if (heroNames) heroNames.innerHTML = `${brideNick} &amp; ${groomNick}`;
+    const closingSig = document.getElementById('closing-signature');
+    if (closingSig) closingSig.innerHTML = `${brideNick} &amp; ${groomNick}`;
+
+    // Dates
+    if (data.weddingDate) {
+      const coverDate = document.getElementById('cover-date');
+      const heroDate = document.getElementById('hero-date');
+      if (coverDate) coverDate.textContent = data.weddingDate.toUpperCase();
+      if (heroDate) heroDate.textContent = data.weddingDate.toUpperCase();
+    }
+
+    // Events (Akad & Resepsi)
+    if (data.akad) {
+      if (data.akad.date && document.getElementById('akad-date')) document.getElementById('akad-date').textContent = data.akad.date;
+      if (data.akad.time && document.getElementById('akad-time')) document.getElementById('akad-time').textContent = data.akad.time;
+      if (data.akad.venue && document.getElementById('akad-venue')) document.getElementById('akad-venue').textContent = data.akad.venue;
+      if (data.akad.maps && document.getElementById('akad-maps')) document.getElementById('akad-maps').href = data.akad.maps;
+    }
+    if (data.resepsi) {
+      if (data.resepsi.date && document.getElementById('resepsi-date')) document.getElementById('resepsi-date').textContent = data.resepsi.date;
+      if (data.resepsi.time && document.getElementById('resepsi-time')) document.getElementById('resepsi-time').textContent = data.resepsi.time;
+      if (data.resepsi.venue && document.getElementById('resepsi-venue')) document.getElementById('resepsi-venue').textContent = data.resepsi.venue;
+      if (data.resepsi.maps && document.getElementById('resepsi-maps')) document.getElementById('resepsi-maps').href = data.resepsi.maps;
+    }
+
+    // Bank Account
+    if (data.bank) {
+      if (data.bank.number) {
+        const bankNum = document.getElementById('bank-acc-number');
+        const copyBtn = document.getElementById('btn-copy-acc');
+        if (bankNum) bankNum.textContent = data.bank.number;
+        if (copyBtn) copyBtn.setAttribute('data-copy', data.bank.number);
+      }
+      if (data.bank.holder) {
+        const bankHolder = document.getElementById('bank-acc-holder');
+        if (bankHolder) bankHolder.textContent = `A/n ${data.bank.holder}`;
+      }
+    }
+
+    // Gallery Photos
+    if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
+      const gItems = document.querySelectorAll('.gallery-item');
+      data.gallery.forEach((photoUrl, idx) => {
+        if (gItems[idx]) {
+          const img = gItems[idx].querySelector('img');
+          if (img) img.src = photoUrl;
+          gItems[idx].setAttribute('data-full', photoUrl);
+          if (typeof imageSources !== 'undefined' && imageSources[idx]) {
+            imageSources[idx] = photoUrl;
+          }
+        }
+      });
+    }
+
+    // Guest name test
+    if (data.testGuest) {
+      const displays = document.querySelectorAll('.dynamic-guest-name');
+      displays.forEach(el => el.textContent = data.testGuest);
+      if (qrTarget && typeof QRCode !== 'undefined') {
+        qrTarget.innerHTML = '';
+        new QRCode(qrTarget, {
+          text: data.testGuest,
+          width: 140,
+          height: 140,
+          colorDark: '#333333',
+          colorLight: '#ffffff',
+          correctLevel: QRCode.CorrectLevel.H
+        });
+      }
+    }
+  }
+
+  // Check saved custom data from localStorage
+  try {
+    const saved = localStorage.getItem('wedding_custom_data');
+    if (saved) {
+      applyCustomData(JSON.parse(saved));
+    }
+  } catch(e) {}
+
+  // Listen to postMessage from parent window (Builder)
+  window.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'UPDATE_INVITATION_DATA') {
+      applyCustomData(event.data.payload);
+    }
+  });
 });
