@@ -73,12 +73,14 @@
       scroll-behavior: smooth;
     }
 
-    body {
+    html, body {
       font-family: 'Montserrat', sans-serif;
       background-color: var(--teal-dark);
       color: var(--text-main);
       overflow-x: hidden;
       min-height: 100vh;
+      width: 100%;
+      max-width: 100vw;
     }
 
     /* =========================================================================
@@ -87,8 +89,11 @@
     .app-layout {
       display: flex;
       width: 100%;
+      max-width: 100vw;
       min-height: 100vh;
       background-color: var(--teal-dark);
+      justify-content: center;
+      overflow-x: hidden;
     }
 
     /* Left Desktop Fixed Cover Column */
@@ -113,8 +118,17 @@
       }
       .mobile-invitation-container {
         width: 500px !important;
-        margin: 0 auto;
+        margin: 0 !important;
         box-shadow: 0 0 50px rgba(0,0,0,0.5);
+      }
+      .gate-overlay {
+        left: auto !important;
+        right: 0 !important;
+        width: 500px !important;
+        transform: none !important;
+      }
+      .gate-overlay.opened {
+        transform: translateY(-100%) !important;
       }
     }
 
@@ -158,6 +172,7 @@
       position: relative;
       min-height: 100vh;
       overflow-x: hidden;
+      box-sizing: border-box;
     }
 
     /* =========================================================================
@@ -166,10 +181,10 @@
     .gate-overlay {
       position: fixed;
       top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
       width: 100%;
+      max-width: 500px;
       height: 100%;
       background: linear-gradient(rgba(244, 238, 227, 0.88), rgba(244, 238, 227, 0.94)), url('assets/template2/cvrr-1.jpg') center center/cover no-repeat;
       z-index: 9999;
@@ -180,18 +195,11 @@
       padding: 30px 20px;
       text-align: center;
       transition: transform 0.85s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.85s ease;
-    }
-
-    @media (min-width: 900px) {
-      .gate-overlay {
-        left: auto;
-        right: 0;
-        width: 500px;
-      }
+      box-sizing: border-box;
     }
 
     .gate-overlay.opened {
-      transform: translateY(-100%);
+      transform: translateX(-50%) translateY(-100%);
       opacity: 0;
       pointer-events: none;
     }
@@ -287,6 +295,20 @@
       box-shadow: 0 12px 28px rgba(196, 154, 69, 0.5);
     }
 
+    .section-hero,
+    .section-quote,
+    .section-mempelai,
+    .section-acara,
+    .section-lovestory,
+    .section-amplop,
+    .section-rsvp,
+    .section-closing {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
     /* =========================================================================
        SECTION 1: HERO / OPENING
        ========================================================================= */
@@ -307,15 +329,16 @@
 
     /* Arch Frame Ornament */
     .hero-arch-frame {
-      width: 100%;
+      width: calc(100% - 32px);
       max-width: 420px;
       border: 2px solid var(--accent-gold);
       border-radius: 200px 200px 20px 20px;
-      padding: 60px 24px 50px;
+      padding: 60px 20px 50px;
       background: rgba(27, 45, 49, 0.35);
       backdrop-filter: blur(4px);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       position: relative;
+      box-sizing: border-box;
     }
 
     .hero-pretitle {
@@ -1454,13 +1477,6 @@
       testGuest: 'Keluarga Besar Legache 3.4'
     };
 
-    // Parse URL Parameter ?to=
-    const params = new URLSearchParams(window.location.search);
-    const guestParam = params.get('to');
-    if (guestParam) {
-      data.testGuest = guestParam.replace(/[-+]/g, ' ');
-    }
-
     // Load Local Draft if Present
     try {
       const saved = localStorage.getItem('wedding_custom_data');
@@ -1473,12 +1489,21 @@
       }
     } catch(e) {}
 
+    // Parse URL Parameter ?to= (ALWAYS takes highest priority if present)
+    const params = new URLSearchParams(window.location.search);
+    const guestParam = params.get('to');
+    if (guestParam) {
+      data.testGuest = guestParam.replace(/[-+]/g, ' ');
+    }
+
     // Render Data into DOM
     function renderData() {
       const gShort = data.groom.nickname || data.groom.name.split(' ')[0];
       const bShort = data.bride.nickname || data.bride.name.split(' ')[0];
       const couplePair = `${bShort} & ${gShort}`;
       const initials = (bShort[0] || 'G') + (gShort[0] || 'H');
+
+      document.title = `The Wedding of ${bShort} & ${gShort}`;
 
       // Monograms
       document.getElementById('gate-monogram-text').textContent = initials;
@@ -1495,7 +1520,7 @@
       // Guest Name
       document.getElementById('guest-name-display').textContent = data.testGuest || 'Tamu Undangan';
       const rsvpInput = document.getElementById('rsvp-input-name');
-      if (rsvpInput && !rsvpInput.value) rsvpInput.value = data.testGuest || '';
+      if (rsvpInput) rsvpInput.value = data.testGuest || '';
 
       // Dates
       document.getElementById('hero-wedding-date').textContent = data.weddingDate;
@@ -1534,6 +1559,12 @@
       } else {
         document.getElementById('bank-logo-img').src = 'assets/template2/BCA_5770-1.webp';
       }
+
+      // Kirim Kado
+      const recvName = document.getElementById('gift-receiver-name');
+      if (recvName) recvName.textContent = data.bride.name;
+      const recvAddr = document.getElementById('gift-receiver-address');
+      if (recvAddr) recvAddr.textContent = `${data.akad.venue} (Alamat sesuai lokasi acara)`;
     }
 
     renderData();
