@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let guestName = urlParams.get('to');
 
   function formatGuestName(name) {
-    if (!name) return 'Ocha Geniarsyah';
+    if (!name) return 'Kania Safitri';
     return name
       .replace(/\+/g, ' ')
       .trim()
