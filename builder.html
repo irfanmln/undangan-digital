@@ -1051,16 +1051,16 @@
               </div>
 
               <div class="template-grid">
-                <div class="template-card active">
+                <div class="template-card active" data-template="index.html" data-name="Botanical Vintage">
                   <img src="assets/images/Art-8-bg-1.jpg" alt="Botanical Vintage" class="template-thumb">
                   <div class="template-name">Botanical Vintage</div>
                   <div class="template-status">✓ Aktif Digunakan</div>
                 </div>
 
-                <div class="template-card" style="opacity: 0.65; cursor: default;">
-                  <div class="template-thumb" style="display:flex; align-items:center; justify-content:center; background:#f0ece9; color:#888; font-weight:600; font-size:12px;">Segera Hadir</div>
-                  <div class="template-name">Modern Minimalist</div>
-                  <div class="template-status" style="color:#888;">Coming Soon</div>
+                <div class="template-card" data-template="template-royal-garden.html" data-name="Royal Garden (Punakawan)">
+                  <img src="assets/template2/thumbnail-wa.jpg" alt="Royal Garden (Punakawan)" class="template-thumb">
+                  <div class="template-name">Royal Garden (Punakawan)</div>
+                  <div class="template-status">Pilih Desain</div>
                 </div>
               </div>
 
@@ -1458,6 +1458,40 @@
       btn.addEventListener('click', () => {
         const prevId = btn.getAttribute('data-prev');
         if (prevId) switchTab(prevId);
+      });
+    });
+
+    // =========================================================================
+    // TEMPLATE SWITCHER (Botanical Vintage vs Royal Garden)
+    // =========================================================================
+    let activeTemplate = 'index.html';
+    const templateCards = document.querySelectorAll('.template-card');
+    const btnFullscreen = document.querySelector('a[title="Buka Pratinjau Fullscreen"]');
+    const coupleBadgeStatus = document.querySelector('.couple-badge-status');
+
+    templateCards.forEach(card => {
+      card.addEventListener('click', () => {
+        const tplFile = card.getAttribute('data-template');
+        const tplName = card.getAttribute('data-name');
+        if (!tplFile) return;
+
+        templateCards.forEach(c => {
+          c.classList.remove('active');
+          const st = c.querySelector('.template-status');
+          if (st) st.textContent = 'Pilih Desain';
+        });
+
+        card.classList.add('active');
+        const activeSt = card.querySelector('.template-status');
+        if (activeSt) activeSt.textContent = '✓ Aktif Digunakan';
+
+        activeTemplate = tplFile;
+        if (iframe) iframe.src = tplFile;
+        if (btnFullscreen) btnFullscreen.href = tplFile;
+        if (coupleBadgeStatus) coupleBadgeStatus.textContent = `Template: ${tplName}`;
+        
+        showToast(`Beralih ke template: ${tplName}`);
+        setTimeout(syncPreview, 400);
       });
     });
 
