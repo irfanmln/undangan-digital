@@ -884,6 +884,234 @@
       }
     }
 
+    /* Photo Upload Component */
+    .photo-upload-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;
+      border: 1px dashed var(--border);
+      border-radius: var(--radius-md);
+      background: var(--stone-50);
+      margin-bottom: 14px;
+    }
+
+    .photo-upload-thumb {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--stone-200);
+      border: 2px solid #ffffff;
+      box-shadow: var(--shadow-sm);
+      flex-shrink: 0;
+    }
+
+    .hero-photo-thumb {
+      width: 100px;
+      height: 70px;
+      border-radius: var(--radius-sm);
+      object-fit: cover;
+      background: var(--stone-200);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .photo-upload-info {
+      flex: 1;
+    }
+
+    .photo-upload-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--stone-900);
+      margin-bottom: 2px;
+    }
+
+    .photo-upload-desc {
+      font-size: 11px;
+      color: var(--stone-500);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .photo-upload-actions {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .btn-upload-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: var(--radius-sm);
+      background: var(--stone-100);
+      border: 1px solid var(--border);
+      color: var(--stone-800);
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-upload-trigger:hover {
+      background: #ffffff;
+      border-color: var(--rose-400);
+      color: var(--rose-700);
+    }
+
+    .btn-remove-photo {
+      background: none;
+      border: none;
+      color: #ef4444;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 4px 6px;
+    }
+
+    /* Guest Manager & WhatsApp Sharing */
+    .guest-add-box {
+      background: var(--stone-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      margin-bottom: 20px;
+    }
+
+    .guest-list-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .guest-card-item {
+      background: #ffffff;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: all 0.2s;
+    }
+
+    .guest-card-item:hover {
+      border-color: var(--rose-300);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .guest-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .guest-name-text {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--stone-900);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .guest-phone-badge {
+      font-size: 11px;
+      color: var(--stone-500);
+      background: var(--stone-100);
+      padding: 2px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .guest-link-bar {
+      font-size: 11px;
+      color: var(--stone-600);
+      background: var(--stone-50);
+      padding: 6px 10px;
+      border-radius: 6px;
+      word-break: break-all;
+      font-family: monospace;
+      border: 1px solid var(--stone-200);
+    }
+
+    .guest-action-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .btn-wa-send {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #25D366;
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-wa-send:hover {
+      background: #1eb956;
+      transform: translateY(-1px);
+    }
+
+    .btn-guest-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--stone-100);
+      color: var(--stone-700);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 6px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-guest-action:hover {
+      background: #ffffff;
+      color: var(--stone-900);
+    }
+
+    .btn-guest-del {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: #9ca3af;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+    }
+
+    .btn-guest-del:hover {
+      color: #ef4444;
+      background: #fee2e2;
+    }
+
+    /* Template WhatsApp Message */
+    .wa-template-box {
+      margin-bottom: 20px;
+    }
+
+    .wa-template-box textarea {
+      font-size: 12px;
+      line-height: 1.5;
+      font-family: inherit;
+    }
+
     @media (max-width: 480px) {
       .top-header {
         padding: 8px 12px;
@@ -981,7 +1209,7 @@
           <li>
             <button class="nav-item-btn" data-target="tab-tamu">
               <span class="nav-icon">✉️</span>
-              <span>Simulasi Nama Tamu</span>
+              <span>Daftar Tamu &amp; Sebar WA</span>
             </button>
           </li>
         </ul>
@@ -1076,10 +1304,27 @@
             <section id="tab-mempelai" class="tab-section">
               <div class="section-header">
                 <h2 class="section-title">Informasi Calon Mempelai</h2>
-                <p class="section-desc">Sesuaikan nama lengkap, nama panggilan, orang tua, dan media sosial kedua mempelai.</p>
+                <p class="section-desc">Sesuaikan nama lengkap, nama panggilan, orang tua, foto profil, dan media sosial kedua mempelai.</p>
               </div>
 
               <div class="sub-heading">👰 Mempelai Wanita</div>
+              <div class="photo-upload-row">
+                <img id="bride-photo-thumb" src="assets/images/41e.jpg" alt="Foto Mempelai Wanita" class="photo-upload-thumb">
+                <div class="photo-upload-info">
+                  <div class="photo-upload-title">Foto Mempelai Wanita</div>
+                  <div class="photo-upload-desc">Tampil pada profil mempelai. Otomatis dikompres ke WebP.</div>
+                  <div class="photo-upload-actions">
+                    <input type="file" id="bride-photo-file" accept="image/*" style="display:none;">
+                    <button type="button" id="btn-trigger-bride-photo" class="btn-upload-trigger">
+                      📸 Pilih Foto
+                    </button>
+                    <button type="button" id="btn-remove-bride-photo" class="btn-remove-photo" style="display:none;">
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               <div class="form-grid">
                 <div class="form-group">
                   <label>Nama Lengkap</label>
@@ -1100,6 +1345,23 @@
               </div>
 
               <div class="sub-heading">🤵 Mempelai Pria</div>
+              <div class="photo-upload-row">
+                <img id="groom-photo-thumb" src="assets/images/94c.jpg" alt="Foto Mempelai Pria" class="photo-upload-thumb">
+                <div class="photo-upload-info">
+                  <div class="photo-upload-title">Foto Mempelai Pria</div>
+                  <div class="photo-upload-desc">Tampil pada profil mempelai. Otomatis dikompres ke WebP.</div>
+                  <div class="photo-upload-actions">
+                    <input type="file" id="groom-photo-file" accept="image/*" style="display:none;">
+                    <button type="button" id="btn-trigger-groom-photo" class="btn-upload-trigger">
+                      📸 Pilih Foto
+                    </button>
+                    <button type="button" id="btn-remove-groom-photo" class="btn-remove-photo" style="display:none;">
+                      Hapus
+                    </button>
+                  </div>
+                </div>
+              </div>
+
               <div class="form-grid">
                 <div class="form-group">
                   <label>Nama Lengkap</label>
@@ -1133,7 +1395,20 @@
             <section id="tab-acara" class="tab-section">
               <div class="section-header">
                 <h2 class="section-title">Waktu &amp; Lokasi Acara</h2>
-                <p class="section-desc">Atur jadwal Akad Nikah, Resepsi, gedung/tempat acara serta link Google Maps.</p>
+                <p class="section-desc">Atur jadwal pernikahan, countdown otomatis, gedung/tempat acara serta link Google Maps.</p>
+              </div>
+
+              <!-- Master Wedding Date & Countdown Anchor -->
+              <div class="sub-heading">🗓️ Tanggal Pernikahan Utama (Cover &amp; Countdown)</div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Pilih Kalender</label>
+                  <input type="date" id="input-wedding-datepicker" value="2025-11-22">
+                </div>
+                <div class="form-group">
+                  <label>Teks Tanggal (Tampil di Cover &amp; Hero)</label>
+                  <input type="text" id="input-wedding-date" value="Sabtu, 22 November 2025">
+                </div>
               </div>
 
               <div class="sub-heading">💍 Akad Nikah</div>
@@ -1147,8 +1422,12 @@
                   <input type="text" id="input-akad-time" value="Pukul 07.30 WIB">
                 </div>
                 <div class="form-group full">
-                  <label>Tempat / Gedung</label>
+                  <label>Nama Tempat / Gedung</label>
                   <input type="text" id="input-akad-venue" value="The Newton Hotel Bandung">
+                </div>
+                <div class="form-group full">
+                  <label>Alamat Lengkap / Jalan</label>
+                  <input type="text" id="input-akad-address" value="Jl. R.E. Martadinata No. 223, Cihapit, Kec. Bandung Wetan, Kota Bandung">
                 </div>
                 <div class="form-group full">
                   <label>Link Google Maps</label>
@@ -1167,8 +1446,12 @@
                   <input type="text" id="input-resepsi-time" value="Pukul 11.00 - 14.00 WIB">
                 </div>
                 <div class="form-group full">
-                  <label>Tempat / Gedung</label>
+                  <label>Nama Tempat / Gedung</label>
                   <input type="text" id="input-resepsi-venue" value="The Newton Hotel Bandung">
+                </div>
+                <div class="form-group full">
+                  <label>Alamat Lengkap / Jalan</label>
+                  <input type="text" id="input-resepsi-address" value="Jl. R.E. Martadinata No. 223, Cihapit, Kec. Bandung Wetan, Kota Bandung">
                 </div>
                 <div class="form-group full">
                   <label>Link Google Maps</label>
@@ -1189,11 +1472,31 @@
             <!-- TAB 4: Galeri & Auto-WebP Compressor -->
             <section id="tab-galeri" class="tab-section">
               <div class="section-header">
-                <h2 class="section-title">Galeri Foto (Auto-WebP Compressor)</h2>
-                <p class="section-desc">Pilih foto kamera HP Anda. Sistem akan <b>secara otomatis mengubahnya menjadi format .webp berkualitas tinggi berukuran kecil</b> langsung di browser sebelum disimpan!</p>
+                <h2 class="section-title">Foto Utama &amp; Galeri (Auto-WebP)</h2>
+                <p class="section-desc">Foto otomatis dikompres ke format <b>.webp</b> ringan berkualitas tinggi langsung di browser.</p>
               </div>
 
-              <!-- Dropzone -->
+              <!-- Main Hero Photo -->
+              <div class="sub-heading">✨ Foto Utama / Prewedding (Hero &amp; Sampul)</div>
+              <div class="photo-upload-row">
+                <img id="hero-photo-thumb" src="assets/images/ZQI_0012.jpg" alt="Foto Hero" class="hero-photo-thumb">
+                <div class="photo-upload-info">
+                  <div class="photo-upload-title">Foto Sampul Utama</div>
+                  <div class="photo-upload-desc">Tampil di bingkai utama dan penutup undangan. Otomatis ter-update secara instan di preview.</div>
+                  <div class="photo-upload-actions">
+                    <input type="file" id="hero-photo-file" accept="image/*" style="display:none;">
+                    <button type="button" id="btn-trigger-hero-photo" class="btn-upload-trigger">
+                      📸 Ganti Foto Utama
+                    </button>
+                    <button type="button" id="btn-reset-hero-photo" class="btn-remove-photo" style="display:none;">
+                      Reset Default
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Additional Gallery Dropzone -->
+              <div class="sub-heading">📷 Galeri Foto Prewedding Tambahan</div>
               <div id="dropzone" class="compressor-dropzone">
                 <input type="file" id="file-uploader" accept="image/*" multiple style="display:none;">
                 <svg class="compressor-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
@@ -1213,7 +1516,7 @@
               </div>
 
               <!-- Gallery Grid -->
-              <label>Pratinjau Foto WebP yang Tersimpan</label>
+              <label>Pratinjau Foto Galeri Tambahan</label>
               <div id="gallery-preview-grid" class="gallery-preview-grid">
                 <!-- Injected via JS -->
               </div>
@@ -1231,15 +1534,17 @@
             <!-- TAB 5: Rekening & Kado Digital -->
             <section id="tab-rekening" class="tab-section">
               <div class="section-header">
-                <h2 class="section-title">Amplop Digital (Cashless Gift)</h2>
-                <p class="section-desc">Atur nomor rekening dan bank untuk memudahkan tamu yang ingin memberikan kado secara transfer cashless.</p>
+                <h2 class="section-title">Amplop Digital &amp; Pengiriman Kado</h2>
+                <p class="section-desc">Atur nomor rekening transfer cashless dan alamat pengiriman kado fisik ke rumah pengantin.</p>
               </div>
 
+              <div class="sub-heading">💳 Rekening Transfer Cashless</div>
               <div class="form-grid">
                 <div class="form-group">
                   <label>Bank</label>
                   <select id="input-bank-name">
                     <option value="BCA" selected>BCA (Bank Central Asia)</option>
+                    <option value="BSI">BSI (Bank Syariah Indonesia)</option>
                     <option value="Mandiri">Bank Mandiri</option>
                     <option value="BRI">BRI</option>
                     <option value="BNI">BNI</option>
@@ -1255,34 +1560,88 @@
                 </div>
               </div>
 
+              <div class="sub-heading">📦 Alamat Pengiriman Kado Fisik (Rumah Pengantin)</div>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Nama Penerima Kado</label>
+                  <input type="text" id="input-gift-receiver" value="Kania Safitri">
+                </div>
+                <div class="form-group">
+                  <label>No. HP / WhatsApp Penerima</label>
+                  <input type="text" id="input-gift-phone" value="0812-3456-7890">
+                </div>
+                <div class="form-group full">
+                  <label>Alamat Lengkap Pengiriman (Rumah/Kantor)</label>
+                  <textarea id="input-gift-address" rows="3" placeholder="Contoh: Jl. Dahlia No. 18 RT 02/03, Kel. Pasir Impun, Kec. Mandalajati, Kota Bandung 40192">Jl. Dahlia No. 18 RT 02/03, Kel. Pasir Impun, Kec. Mandalajati, Kota Bandung 40192</textarea>
+                </div>
+                <div class="form-group full">
+                  <label>Catatan Kurir / Panduan Lokasi (Opsional)</label>
+                  <input type="text" id="input-gift-note" value="Pagar warna hitam, titip satpam jika rumah kosong">
+                </div>
+              </div>
+
               <div class="step-actions">
                 <button class="btn btn-secondary prev-step-btn" data-prev="tab-galeri">
                   ⬅ Kembali
                 </button>
                 <button class="btn btn-primary next-step-btn" data-next="tab-tamu">
-                  Lanjut: Simulasi Tamu ➔
+                  Lanjut: Daftar Tamu &amp; Sebar WA ➔
                 </button>
               </div>
             </section>
 
-            <!-- TAB 6: Simulasi Nama Tamu -->
+            <!-- TAB 6: Daftar Tamu & Sebar WhatsApp -->
             <section id="tab-tamu" class="tab-section">
               <div class="section-header">
-                <h2 class="section-title">Simulasi Nama Tamu Undangan</h2>
-                <p class="section-desc">Ketik nama siapa pun di bawah ini untuk melihat bagaimana sampul depan dan barcode QR check-in berubah secara dinamis pada undangan.</p>
+                <h2 class="section-title">Daftar Tamu &amp; Sebar Undangan WhatsApp</h2>
+                <p class="section-desc">Kelola daftar tamu, buat link unik per tamu secara instan, dan sebar langsung via WhatsApp dengan pesan personal.</p>
               </div>
 
-              <div class="form-group">
-                <label>Nama Tamu yang Diuji</label>
-                <input type="text" id="input-test-guest" value="Ocha Geniarsyah" placeholder="Contoh: Bpk. Bambang &amp; Istri">
+              <!-- Form Tambah Tamu -->
+              <div class="guest-add-box">
+                <div class="sub-heading" style="margin-top:0;">➕ Tambah Tamu Baru</div>
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Nama Tamu / Keluarga</label>
+                    <input type="text" id="input-new-guest-name" placeholder="Contoh: Bpk. Bambang &amp; Istri">
+                  </div>
+                  <div class="form-group">
+                    <label>Nomor WhatsApp (Opsional)</label>
+                    <input type="text" id="input-new-guest-phone" placeholder="Contoh: 08123456789 atau 62812...">
+                  </div>
+                </div>
+                <button type="button" id="btn-add-guest" class="btn btn-primary" style="font-size:12px; padding:8px 18px;">
+                  ➕ Tambahkan ke Daftar
+                </button>
               </div>
 
-              <div style="background:var(--rose-50); border:1px solid var(--rose-200); border-radius:var(--radius-sm); padding:14px; font-size:12px; color:var(--stone-700); line-height:1.6;">
-                <b style="color:var(--rose-700);">💡 Cara Kerja Link Undangan:</b><br>
-                Saat menyebarkan link ke tamu di WhatsApp, cukup tambahkan parameter nama tamu di akhir link:<br>
-                <code style="display:inline-block; margin-top:6px; background:#ffffff; padding:4px 8px; border-radius:6px; border:1px solid var(--rose-200); font-weight:700; color:var(--rose-600);">
-                  ?to=<span id="guest-url-preview">Ocha+Geniarsyah</span>
-                </code>
+              <!-- WhatsApp Template Message Box -->
+              <div class="wa-template-box">
+                <div class="sub-heading">💬 Template Pesan WhatsApp</div>
+                <p class="section-desc" style="margin-bottom:8px;">Gunakan tag <code>{nama}</code>, <code>{mempelai}</code>, <code>{tanggal}</code>, dan <code>{link}</code> untuk pesan otomatis.</p>
+                <textarea id="input-wa-template" rows="6"></textarea>
+              </div>
+
+              <!-- Guest List -->
+              <div class="sub-heading">📋 Daftar Tamu (<span id="guest-count">0</span>)</div>
+              <div id="guest-list-wrap" class="guest-list-container">
+                <!-- Dynamically populated via JS -->
+              </div>
+
+              <!-- Reset / Management Wishes Section -->
+              <div style="margin-top:36px; padding:20px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--stone-50);">
+                <div class="sub-heading" style="margin-top:0; color:var(--stone-800);">💌 Kelola Buku Tamu &amp; Ucapan Doa Restu</div>
+                <p class="section-desc" style="margin-bottom:14px;">
+                  Secara default untuk undangan yang siap disebar ke publik, buku tamu harus bersih dari ucapan dummy agar tamu asli yang mengisinya.
+                </p>
+                <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                  <button type="button" id="btn-clear-wishes" class="btn btn-secondary" style="color:#ef4444; border-color:#fca5a5;">
+                    🗑️ Kosongkan Buku Tamu (Mulai dari Nol)
+                  </button>
+                  <button type="button" id="btn-demo-wishes" class="btn btn-secondary">
+                    💡 Muat Contoh Ucapan (Simulasi Desain)
+                  </button>
+                </div>
               </div>
 
               <div class="step-actions">
@@ -1331,17 +1690,22 @@
         instagram: '@mohammadirfanmaulana',
         photo: null
       },
-      weddingDate: 'SABTU, 22 NOVEMBER 2025',
+      weddingDate: 'Sabtu, 22 November 2025',
+      weddingDateIso: '2025-11-22',
+      weddingTimestamp: null,
+      heroPhoto: null,
       akad: {
         date: 'Sabtu, 22 November 2025',
         time: 'Pukul 07.30 WIB',
         venue: 'The Newton Hotel Bandung',
+        address: 'Jl. R.E. Martadinata No. 223, Cihapit, Kec. Bandung Wetan, Kota Bandung',
         maps: 'https://maps.app.goo.gl/kNFfnaV5ggH7zYF58'
       },
       resepsi: {
         date: 'Sabtu, 22 November 2025',
         time: 'Pukul 11.00 - 14.00 WIB',
         venue: 'The Newton Hotel Bandung',
+        address: 'Jl. R.E. Martadinata No. 223, Cihapit, Kec. Bandung Wetan, Kota Bandung',
         maps: 'https://maps.app.goo.gl/kNFfnaV5ggH7zYF58'
       },
       bank: {
@@ -1349,15 +1713,44 @@
         number: '4372303623',
         holder: 'Kania Safitri'
       },
+      gift: {
+        receiver: 'Kania Safitri',
+        phone: '0812-3456-7890',
+        address: 'Jl. Dahlia No. 18 RT 02/03, Kel. Pasir Impun, Kec. Mandalajati, Kota Bandung 40192',
+        note: 'Pagar warna hitam, titip satpam jika rumah kosong'
+      },
       gallery: [],
-      testGuest: 'Ocha Geniarsyah'
+      testGuest: 'Keluarga Besar Legache 3.4',
+      guests: [
+        { name: 'Keluarga Besar Legache 3.4', phone: '' },
+        { name: 'Ocha Geniarsyah', phone: '' },
+        { name: 'Bpk. Bambang & Istri', phone: '' }
+      ],
+      waTemplate: `Kepada Yth.\nBapak/Ibu/Saudara/i {nama}\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Anda untuk menghadiri acara pernikahan kami:\n\n👰🤵 {mempelai}\n📅 {tanggal}\n\nUntuk rincian acara, lokasi, dan konfirmasi kehadiran, silakan buka link undangan digital berikut:\n👉 {link}\n\nMerupakan suatu kehormatan & kebahagiaan bagi kami apabila Anda berkenan hadir dan memberikan doa restu.\n\nTerima kasih.`,
+      clearComments: false
     };
+
+    // Deep merge helper
+    function mergeDeep(target, source) {
+      for (const key of Object.keys(source)) {
+        if (source[key] && typeof source[key] === 'object' && !Array.isArray(source[key])) {
+          if (!target[key]) target[key] = {};
+          mergeDeep(target[key], source[key]);
+        } else {
+          target[key] = source[key];
+        }
+      }
+    }
 
     // Load saved data if present
     try {
       const saved = localStorage.getItem('wedding_custom_data');
       if (saved) {
-        Object.assign(state, JSON.parse(saved));
+        mergeDeep(state, JSON.parse(saved));
+      }
+      const savedGuests = localStorage.getItem('wedding_guest_list');
+      if (savedGuests) {
+        state.guests = JSON.parse(savedGuests);
       }
     } catch(e) {}
 
@@ -1367,6 +1760,7 @@
     function syncPreview() {
       try {
         localStorage.setItem('wedding_custom_data', JSON.stringify(state));
+        localStorage.setItem('wedding_guest_list', JSON.stringify(state.guests));
       } catch(e) {}
 
       if (iframe && iframe.contentWindow) {
@@ -1383,6 +1777,20 @@
         const brideShort = state.bride.nickname || state.bride.name.split(' ')[0];
         nameEl.textContent = `${groomShort} & ${brideShort}`;
       }
+      const dateEl = document.getElementById('sidebar-wedding-date');
+      if (dateEl) {
+        dateEl.textContent = state.weddingDate;
+      }
+    }
+
+    // Format Date Helper
+    function formatIndonesianDate(isoStr) {
+      if (!isoStr) return '';
+      const [year, month, day] = isoStr.split('-').map(Number);
+      const d = new Date(year, month - 1, day);
+      const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+      const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+      return `${days[d.getDay()]}, ${day} ${months[month - 1]} ${year}`;
     }
 
     // =========================================================================
@@ -1431,7 +1839,6 @@
       });
 
       closeSidebar();
-      // On mobile, ensure we are in form view
       if (window.innerWidth < 1024) {
         setMobileView('edit');
       }
@@ -1446,7 +1853,6 @@
       });
     });
 
-    // Step navigation next/prev
     document.querySelectorAll('.next-step-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const nextId = btn.getAttribute('data-next');
@@ -1546,15 +1952,49 @@
     bindInput('input-groom-parents', val => state.groom.parents = val);
     bindInput('input-groom-ig', val => state.groom.instagram = val);
 
+    // Master Wedding Date
+    const datePickerEl = document.getElementById('input-wedding-datepicker');
+    const weddingDateTextEl = document.getElementById('input-wedding-date');
+    const akadDateEl = document.getElementById('input-akad-date');
+    const resepsiDateEl = document.getElementById('input-resepsi-date');
+
+    if (datePickerEl) {
+      datePickerEl.addEventListener('change', () => {
+        const iso = datePickerEl.value;
+        state.weddingDateIso = iso;
+        const formatted = formatIndonesianDate(iso);
+        state.weddingDate = formatted;
+        state.akad.date = formatted;
+        state.resepsi.date = formatted;
+        if (weddingDateTextEl) weddingDateTextEl.value = formatted;
+        if (akadDateEl) akadDateEl.value = formatted;
+        if (resepsiDateEl) resepsiDateEl.value = formatted;
+        syncPreview();
+      });
+    }
+
+    bindInput('input-wedding-date', val => {
+      state.weddingDate = val;
+      state.akad.date = val;
+      state.resepsi.date = val;
+      if (akadDateEl) akadDateEl.value = val;
+      if (resepsiDateEl) resepsiDateEl.value = val;
+    });
+
     // Akad & Resepsi
-    bindInput('input-akad-date', val => state.akad.date = val);
+    bindInput('input-akad-date', val => {
+      state.akad.date = val;
+      state.weddingDate = val;
+    });
     bindInput('input-akad-time', val => state.akad.time = val);
     bindInput('input-akad-venue', val => state.akad.venue = val);
+    bindInput('input-akad-address', val => state.akad.address = val);
     bindInput('input-akad-maps', val => state.akad.maps = val);
 
     bindInput('input-resepsi-date', val => state.resepsi.date = val);
     bindInput('input-resepsi-time', val => state.resepsi.time = val);
     bindInput('input-resepsi-venue', val => state.resepsi.venue = val);
+    bindInput('input-resepsi-address', val => state.resepsi.address = val);
     bindInput('input-resepsi-maps', val => state.resepsi.maps = val);
 
     // Bank
@@ -1562,68 +2002,81 @@
     bindInput('input-bank-number', val => state.bank.number = val);
     bindInput('input-bank-holder', val => state.bank.holder = val);
 
-    // Guest Test
-    bindInput('input-test-guest', val => {
-      state.testGuest = val;
-      const preview = document.getElementById('guest-url-preview');
-      if (preview) preview.textContent = encodeURIComponent(val.trim()).replace(/%20/g, '+');
-    });
+    // Kado Fisik
+    bindInput('input-gift-receiver', val => state.gift.receiver = val);
+    bindInput('input-gift-phone', val => state.gift.phone = val);
+    bindInput('input-gift-address', val => state.gift.address = val);
+    bindInput('input-gift-note', val => state.gift.note = val);
 
-    // Save All button
-    const btnSaveFinish = document.getElementById('btn-save-finish');
-    if (btnSaveFinish) {
-      btnSaveFinish.addEventListener('click', () => {
+    // WA Template
+    const waTplEl = document.getElementById('input-wa-template');
+    if (waTplEl) {
+      waTplEl.value = state.waTemplate;
+      waTplEl.addEventListener('input', () => {
+        state.waTemplate = waTplEl.value;
         syncPreview();
-        showToast('Semua data berhasil disimpan & disinkronkan!');
       });
     }
+
+    // Populate Initial Inputs from State
+    function hydrateInputs() {
+      const setV = (id, val) => {
+        const el = document.getElementById(id);
+        if (el && val !== undefined) el.value = val;
+      };
+
+      setV('input-bride-name', state.bride.name);
+      setV('input-bride-nick', state.bride.nickname);
+      setV('input-bride-parents', state.bride.parents);
+      setV('input-bride-ig', state.bride.instagram);
+
+      setV('input-groom-name', state.groom.name);
+      setV('input-groom-nick', state.groom.nickname);
+      setV('input-groom-parents', state.groom.parents);
+      setV('input-groom-ig', state.groom.instagram);
+
+      setV('input-wedding-date', state.weddingDate);
+      if (state.weddingDateIso && datePickerEl) datePickerEl.value = state.weddingDateIso;
+
+      setV('input-akad-date', state.akad.date);
+      setV('input-akad-time', state.akad.time);
+      setV('input-akad-venue', state.akad.venue);
+      setV('input-akad-address', state.akad.address);
+      setV('input-akad-maps', state.akad.maps);
+
+      setV('input-resepsi-date', state.resepsi.date);
+      setV('input-resepsi-time', state.resepsi.time);
+      setV('input-resepsi-venue', state.resepsi.venue);
+      setV('input-resepsi-address', state.resepsi.address);
+      setV('input-resepsi-maps', state.resepsi.maps);
+
+      setV('input-bank-name', state.bank.name);
+      setV('input-bank-number', state.bank.number);
+      setV('input-bank-holder', state.bank.holder);
+
+      setV('input-gift-receiver', state.gift.receiver);
+      setV('input-gift-phone', state.gift.phone);
+      setV('input-gift-address', state.gift.address);
+      setV('input-gift-note', state.gift.note);
+
+      if (state.bride.photo) {
+        document.getElementById('bride-photo-thumb').src = state.bride.photo;
+        document.getElementById('btn-remove-bride-photo').style.display = 'inline-block';
+      }
+      if (state.groom.photo) {
+        document.getElementById('groom-photo-thumb').src = state.groom.photo;
+        document.getElementById('btn-remove-groom-photo').style.display = 'inline-block';
+      }
+      if (state.heroPhoto) {
+        document.getElementById('hero-photo-thumb').src = state.heroPhoto;
+        document.getElementById('btn-reset-hero-photo').style.display = 'inline-block';
+      }
+    }
+    hydrateInputs();
 
     // =========================================================================
-    // SMART CLIENT-SIDE WEBP COMPRESSOR (Zero Cloudflare Storage Waste)
+    // CLIENT-SIDE WEBP COMPRESSOR (Auto WebP ~100-150 KB)
     // =========================================================================
-    const dropzone = document.getElementById('dropzone');
-    const fileUploader = document.getElementById('file-uploader');
-    const galleryGrid = document.getElementById('gallery-preview-grid');
-    const savingsBanner = document.getElementById('savings-banner');
-    const savingsPercent = document.getElementById('savings-percent');
-    const savingsRaw = document.getElementById('savings-raw');
-    const savingsWebp = document.getElementById('savings-webp');
-
-    let totalRawBytes = 0;
-    let totalWebpBytes = 0;
-
-    if (dropzone && fileUploader) {
-      dropzone.addEventListener('click', () => fileUploader.click());
-
-      dropzone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropzone.style.background = '#ffe4e6';
-      });
-
-      dropzone.addEventListener('dragleave', () => {
-        dropzone.style.background = 'var(--rose-50)';
-      });
-
-      dropzone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropzone.style.background = 'var(--rose-50)';
-        if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
-          handleImageFiles(e.dataTransfer.files);
-        }
-      });
-
-      fileUploader.addEventListener('change', (e) => {
-        if (e.target.files && e.target.files.length > 0) {
-          handleImageFiles(e.target.files);
-        }
-      });
-    }
-
-    function formatKB(bytes) {
-      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
-      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
-    }
-
     function compressToWebP(file, maxWidth = 1080, quality = 0.8) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -1661,18 +2114,105 @@
       });
     }
 
+    // Single Photo Uploader Binder
+    function setupSingleUploader(triggerBtnId, fileInputId, thumbId, removeBtnId, onCompressed, onRemoved) {
+      const triggerBtn = document.getElementById(triggerBtnId);
+      const fileInput = document.getElementById(fileInputId);
+      const thumb = document.getElementById(thumbId);
+      const removeBtn = document.getElementById(removeBtnId);
+
+      if (triggerBtn && fileInput) {
+        triggerBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', async (e) => {
+          if (e.target.files && e.target.files[0]) {
+            showToast('Mengompres foto ke WebP...');
+            try {
+              const res = await compressToWebP(e.target.files[0], 900, 0.82);
+              thumb.src = res.dataUrl;
+              if (removeBtn) removeBtn.style.display = 'inline-block';
+              onCompressed(res.dataUrl);
+              syncPreview();
+              showToast('Foto berhasil diperbarui!');
+            } catch(err) {
+              console.error(err);
+            }
+          }
+        });
+      }
+
+      if (removeBtn) {
+        removeBtn.addEventListener('click', () => {
+          onRemoved();
+          removeBtn.style.display = 'none';
+          syncPreview();
+          showToast('Foto dikembalikan ke default.');
+        });
+      }
+    }
+
+    // Bride Photo
+    setupSingleUploader(
+      'btn-trigger-bride-photo', 'bride-photo-file', 'bride-photo-thumb', 'btn-remove-bride-photo',
+      url => state.bride.photo = url,
+      () => {
+        state.bride.photo = null;
+        document.getElementById('bride-photo-thumb').src = 'assets/images/41e.jpg';
+      }
+    );
+
+    // Groom Photo
+    setupSingleUploader(
+      'btn-trigger-groom-photo', 'groom-photo-file', 'groom-photo-thumb', 'btn-remove-groom-photo',
+      url => state.groom.photo = url,
+      () => {
+        state.groom.photo = null;
+        document.getElementById('groom-photo-thumb').src = 'assets/images/94c.jpg';
+      }
+    );
+
+    // Hero Main Prewedding Photo
+    setupSingleUploader(
+      'btn-trigger-hero-photo', 'hero-photo-file', 'hero-photo-thumb', 'btn-reset-hero-photo',
+      url => state.heroPhoto = url,
+      () => {
+        state.heroPhoto = null;
+        document.getElementById('hero-photo-thumb').src = 'assets/images/ZQI_0012.jpg';
+      }
+    );
+
+    // Gallery Multiple Photos Dropzone
+    const dropzone = document.getElementById('dropzone');
+    const fileUploader = document.getElementById('file-uploader');
+    const galleryGrid = document.getElementById('gallery-preview-grid');
+    const savingsBanner = document.getElementById('savings-banner');
+    const savingsPercent = document.getElementById('savings-percent');
+    const savingsRaw = document.getElementById('savings-raw');
+    const savingsWebp = document.getElementById('savings-webp');
+
+    let totalRawBytes = 0;
+    let totalWebpBytes = 0;
+
+    function formatKB(bytes) {
+      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
+      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+    }
+
     async function handleImageFiles(files) {
       showToast(`Mengompres ${files.length} foto ke format WebP...`);
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (!file.type.startsWith('image/')) continue;
-
         try {
           const result = await compressToWebP(file);
           totalRawBytes += result.rawSize;
           totalWebpBytes += result.webpSize;
 
           state.gallery.push(result.dataUrl);
+          if (!state.heroPhoto && state.gallery.length === 1) {
+            state.heroPhoto = result.dataUrl;
+            document.getElementById('hero-photo-thumb').src = result.dataUrl;
+            document.getElementById('btn-reset-hero-photo').style.display = 'inline-block';
+          }
 
           const card = document.createElement('div');
           card.className = 'gallery-preview-item';
@@ -1682,7 +2222,7 @@
           `;
           galleryGrid.appendChild(card);
         } catch(err) {
-          console.error('Compression error:', err);
+          console.error(err);
         }
       }
 
@@ -1695,7 +2235,209 @@
       }
 
       syncPreview();
-      showToast('Foto berhasil dikompres ke WebP!');
+      showToast('Foto galeri berhasil disimpan!');
+    }
+
+    if (dropzone && fileUploader) {
+      dropzone.addEventListener('click', () => fileUploader.click());
+      dropzone.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropzone.style.background = '#ffe4e6';
+      });
+      dropzone.addEventListener('dragleave', () => dropzone.style.background = 'var(--rose-50)');
+      dropzone.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dropzone.style.background = 'var(--rose-50)';
+        if (e.dataTransfer.files) handleImageFiles(e.dataTransfer.files);
+      });
+      fileUploader.addEventListener('change', (e) => {
+        if (e.target.files) handleImageFiles(e.target.files);
+      });
+    }
+
+    // =========================================================================
+    // GUEST LIST MANAGER & WHATSAPP SHARING
+    // =========================================================================
+    const guestListWrap = document.getElementById('guest-list-wrap');
+    const guestCountEl = document.getElementById('guest-count');
+    const inputGuestName = document.getElementById('input-new-guest-name');
+    const inputGuestPhone = document.getElementById('input-new-guest-phone');
+    const btnAddGuest = document.getElementById('btn-add-guest');
+
+    function getBaseUrl() {
+      const loc = window.location;
+      const pathParts = loc.pathname.split('/');
+      pathParts.pop(); // remove builder.html
+      const dir = pathParts.join('/');
+      return `${loc.origin}${dir}/${activeTemplate}`;
+    }
+
+    function generateGuestUrl(guestName) {
+      const base = getBaseUrl();
+      const q = encodeURIComponent(guestName.trim()).replace(/%20/g, '+');
+      return `${base}?to=${q}`;
+    }
+
+    function composeWaMessage(guest) {
+      const couple = `${state.bride.nickname || state.bride.name} & ${state.groom.nickname || state.groom.name}`;
+      const url = generateGuestUrl(guest.name);
+      return state.waTemplate
+        .replace(/{nama}/g, guest.name)
+        .replace(/{mempelai}/g, couple)
+        .replace(/{tanggal}/g, state.weddingDate)
+        .replace(/{link}/g, url);
+    }
+
+    function renderGuestList() {
+      guestListWrap.innerHTML = '';
+      guestCountEl.textContent = state.guests.length;
+
+      if (state.guests.length === 0) {
+        guestListWrap.innerHTML = `
+          <div style="text-align:center; padding:24px; color:var(--stone-400); font-size:12px; border:1px dashed var(--border); border-radius:var(--radius-md);">
+            Belum ada tamu di daftar. Ketik nama tamu di atas untuk mulai membuat link undangan.
+          </div>
+        `;
+        return;
+      }
+
+      state.guests.forEach((g, idx) => {
+        const item = document.createElement('div');
+        item.className = 'guest-card-item';
+        const personalUrl = generateGuestUrl(g.name);
+        const waMsg = composeWaMessage(g);
+
+        // Clean phone for wa.me
+        let phoneClean = (g.phone || '').replace(/\D/g, '');
+        if (phoneClean.startsWith('0')) phoneClean = '62' + phoneClean.slice(1);
+        const waHref = phoneClean 
+          ? `https://api.whatsapp.com/send?phone=${phoneClean}&text=${encodeURIComponent(waMsg)}`
+          : `https://api.whatsapp.com/send?text=${encodeURIComponent(waMsg)}`;
+
+        item.innerHTML = `
+          <div class="guest-card-header">
+            <span class="guest-name-text">
+              👤 ${g.name}
+            </span>
+            ${g.phone ? `<span class="guest-phone-badge">📱 ${g.phone}</span>` : ''}
+          </div>
+          <div class="guest-link-bar">${personalUrl}</div>
+          <div class="guest-action-row">
+            <a href="${waHref}" target="_blank" class="btn-wa-send" title="Kirim via WhatsApp">
+              <span>💬 Kirim WhatsApp</span>
+            </a>
+            <button type="button" class="btn-guest-action btn-copy-msg" data-msg="${encodeURIComponent(waMsg)}">
+              📋 Salin Pesan
+            </button>
+            <button type="button" class="btn-guest-action btn-copy-link" data-url="${personalUrl}">
+              🔗 Salin Link
+            </button>
+            <button type="button" class="btn-guest-action btn-preview-guest" data-name="${g.name}">
+              👁️ Pratinjau
+            </button>
+            <button type="button" class="btn-guest-del" data-idx="${idx}" title="Hapus Tamu">
+              🗑️
+            </button>
+          </div>
+        `;
+        guestListWrap.appendChild(item);
+      });
+
+      // Bind events
+      guestListWrap.querySelectorAll('.btn-copy-msg').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const msg = decodeURIComponent(btn.getAttribute('data-msg'));
+          navigator.clipboard.writeText(msg).then(() => showToast('Pesan WhatsApp berhasil disalin!'));
+        });
+      });
+
+      guestListWrap.querySelectorAll('.btn-copy-link').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const url = btn.getAttribute('data-url');
+          navigator.clipboard.writeText(url).then(() => showToast('Link undangan berhasil disalin!'));
+        });
+      });
+
+      guestListWrap.querySelectorAll('.btn-preview-guest').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const name = btn.getAttribute('data-name');
+          state.testGuest = name;
+          syncPreview();
+          showToast(`Pratinjau tamu diubah ke: ${name}`);
+          if (window.innerWidth < 1024) setMobileView('preview');
+        });
+      });
+
+      guestListWrap.querySelectorAll('.btn-guest-del').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const idx = parseInt(btn.getAttribute('data-idx'), 10);
+          state.guests.splice(idx, 1);
+          renderGuestList();
+          syncPreview();
+        });
+      });
+    }
+
+    if (btnAddGuest && inputGuestName) {
+      btnAddGuest.addEventListener('click', () => {
+        const name = inputGuestName.value.trim();
+        const phone = inputGuestPhone ? inputGuestPhone.value.trim() : '';
+        if (!name) {
+          showToast('Silakan masukkan nama tamu.');
+          return;
+        }
+        state.guests.push({ name, phone });
+        inputGuestName.value = '';
+        if (inputGuestPhone) inputGuestPhone.value = '';
+        renderGuestList();
+        syncPreview();
+        showToast(`Tamu "${name}" berhasil ditambahkan!`);
+      });
+    }
+    renderGuestList();
+
+    // =========================================================================
+    // BUKU TAMU / WISHES MANAGEMENT (Reset from zero / Demo)
+    // =========================================================================
+    const btnClearWishes = document.getElementById('btn-clear-wishes');
+    const btnDemoWishes = document.getElementById('btn-demo-wishes');
+
+    if (btnClearWishes) {
+      btnClearWishes.addEventListener('click', () => {
+        if (confirm('Kosongkan semua ucapan di buku tamu agar mulai dari nol (0 ucapan)?')) {
+          state.clearComments = true;
+          try {
+            localStorage.removeItem('wedding_comments_royal');
+            localStorage.removeItem('alni_raka_custom_wishes');
+          } catch(e) {}
+          syncPreview();
+          showToast('Buku tamu berhasil dikosongkan (mulai dari nol)!');
+        }
+      });
+    }
+
+    if (btnDemoWishes) {
+      btnDemoWishes.addEventListener('click', () => {
+        state.clearComments = false;
+        const sampleComments = [
+          { author: 'Bunda Maulana dan keluarga', message: 'MasyaAllah Tabarakallah.. Selamat ya, Bismillah dilancarkan dan dimudahkan akad dan resepsinya, semoga sakinah mawaddah warrahmah.', status: 'Hadir', date: new Date().toISOString() },
+          { author: 'Nadia dan suami', message: 'Barakallah! Ikut seneng banget akhirnya sah. Bahagia selalu till jannah yaa!', status: 'Hadir', date: new Date().toISOString() }
+        ];
+        try {
+          localStorage.setItem('wedding_comments_royal', JSON.stringify(sampleComments));
+        } catch(e) {}
+        syncPreview();
+        showToast('Ucapan contoh dimuat untuk simulasi!');
+      });
+    }
+
+    // Save All button
+    const btnSaveFinish = document.getElementById('btn-save-finish');
+    if (btnSaveFinish) {
+      btnSaveFinish.addEventListener('click', () => {
+        syncPreview();
+        showToast('Semua data berhasil disimpan & disinkronkan!');
+      });
     }
 
     // Export JSON

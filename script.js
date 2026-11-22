@@ -257,6 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const feed = document.getElementById('comments-feed');
     feed.innerHTML = '';
 
+    if (allComments.length === 0) {
+      feed.innerHTML = '<div style="text-align:center; padding:32px 16px; color:#888; font-style:italic; font-size:13px;">Belum ada ucapan doa restu.<br>Jadilah yang pertama memberikan doa restu untuk kedua mempelai!</div>';
+      renderPagination();
+      return;
+    }
+
     const start = (page - 1) * itemsPerPage;
     const end = start + itemsPerPage;
     const pageItems = allComments.slice(start, end);
@@ -442,12 +448,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const closingSig = document.getElementById('closing-signature');
     if (closingSig) closingSig.innerHTML = `${brideNick} &amp; ${groomNick}`;
 
-    // Dates
-    if (data.weddingDate) {
+    // Hero & Prewedding Main Photos (Prewedding Sampul)
+    const mainPhoto = data.heroPhoto || (data.gallery && data.gallery[0]);
+    if (mainPhoto) {
+      const heroPhoto = document.getElementById('hero-photo');
+      if (heroPhoto) heroPhoto.src = mainPhoto;
+      const closingPhoto = document.getElementById('closing-photo');
+      if (closingPhoto) closingPhoto.src = mainPhoto;
+    }
+
+    // Dates (Sync across Cover & Hero)
+    const effectiveDate = data.weddingDate || (data.akad && data.akad.date) || '';
+    if (effectiveDate) {
       const coverDate = document.getElementById('cover-date');
       const heroDate = document.getElementById('hero-date');
-      if (coverDate) coverDate.textContent = data.weddingDate.toUpperCase();
-      if (heroDate) heroDate.textContent = data.weddingDate.toUpperCase();
+      if (coverDate) coverDate.textContent = effectiveDate.toUpperCase();
+      if (heroDate) heroDate.textContent = effectiveDate.toUpperCase();
     }
 
     // Events (Akad & Resepsi)
@@ -508,6 +524,14 @@ document.addEventListener('DOMContentLoaded', () => {
           correctLevel: QRCode.CorrectLevel.H
         });
       }
+    }
+
+    // Wishes / Comments Reset
+    if (data.clearComments) {
+      allComments.length = 0;
+      localStorage.removeItem('alni_raka_custom_wishes');
+      renderRSVPStats();
+      renderComments(1);
     }
   }
 

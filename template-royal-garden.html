@@ -1355,10 +1355,14 @@
             <div style="font-size:12px; font-weight:700; color:var(--accent-gold); margin-bottom:10px; text-transform:uppercase;">
               📦 Kirim Kado Fisik
             </div>
-            <div style="font-size:13px; line-height:1.6; color:#e0e0e0;">
-              <b>Nama Penerima:</b> <span id="gift-receiver-name">Gini Aprilliani</span><br>
-              <b>Alamat:</b> <span id="gift-receiver-address">Kp. Leuwipeundeuy RT.22/05 Desa Padabeunghar Kec. Jampang Tengah, Kab. Sukabumi 43371</span>
+            <div style="font-size:13px; line-height:1.6; color:#e0e0e0; margin-bottom:12px;">
+              <b>Nama Penerima:</b> <span id="gift-receiver-name">Kania Safitri</span><br>
+              <b>Alamat:</b> <span id="gift-receiver-address">Alamat penerima kado belum diatur</span>
             </div>
+            <button id="btn-copy-address" class="btn-copy-rekening" data-copy="">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              Salin Alamat Kado
+            </button>
           </div>
         </div>
       </section>
@@ -1371,10 +1375,10 @@
         <!-- Summary -->
         <div class="attendance-badges">
           <div class="att-badge hadir">
-            <span>✓</span> <span id="count-hadir">14</span> Hadir
+            <span>✓</span> <span id="count-hadir">0</span> Hadir
           </div>
           <div class="att-badge tidak-hadir">
-            <span>✕</span> <span id="count-tidak">2</span> Berhalangan
+            <span>✕</span> <span id="count-tidak">0</span> Berhalangan
           </div>
         </div>
 
@@ -1397,20 +1401,7 @@
 
         <!-- Comments Feed -->
         <div id="comments-container" class="comments-list">
-          <div class="comment-item">
-            <div class="comment-author-row">
-              <span class="comment-author">Bunda Maulana dan keluarga</span>
-              <span class="comment-status-pill hadir">Hadir</span>
-            </div>
-            <p class="comment-body">MasyaAllah Tabarakallah.. Selamat ya bu Gini, Bismillah dilancarkan dan dimudahkan akad dan resepsinya, semoga sakinah mawaddah warrahmah.</p>
-          </div>
-          <div class="comment-item">
-            <div class="comment-author-row">
-              <span class="comment-author">Nadia dan suami</span>
-              <span class="comment-status-pill hadir">Hadir</span>
-            </div>
-            <p class="comment-body">Barakallah giniiiii! Ikut seneng banget akhirnya sah. Bahagia selalu till jannah yaa!</p>
-          </div>
+          <!-- Dynamically injected via JavaScript -->
         </div>
       </section>
 
@@ -1477,12 +1468,53 @@
       testGuest: 'Keluarga Besar Legache 3.4'
     };
 
+    // Helper Indonesian Date Parser for Countdown
+    function parseIndonesianDate(dateStr, timeStr) {
+      if (!dateStr) return null;
+      let d = new Date(dateStr);
+      if (!isNaN(d.getTime()) && String(dateStr).includes('-')) return d;
+
+      const clean = String(dateStr)
+        .replace(/^(Senin|Selasa|Rabu|Kamis|Jumat|Jum'at|Sabtu|Minggu)[,\s]*/i, '')
+        .trim();
+
+      const months = {
+        'januari': 0, 'jan': 0, 'februari': 1, 'feb': 1, 'maret': 2, 'mar': 2,
+        'april': 3, 'apr': 3, 'mei': 4, 'may': 4, 'juni': 5, 'jun': 5,
+        'juli': 6, 'jul': 6, 'agustus': 7, 'agu': 7, 'agt': 7,
+        'september': 8, 'sep': 8, 'oktober': 9, 'okt': 9, 'oct': 9,
+        'november': 10, 'nov': 10, 'desember': 11, 'des': 11, 'dec': 11
+      };
+
+      const wordMatch = clean.match(/(\d{1,2})\s+([a-zA-Z']+)\s+(\d{4})/);
+      if (wordMatch) {
+        const day = parseInt(wordMatch[1], 10);
+        const mKey = wordMatch[2].toLowerCase();
+        const year = parseInt(wordMatch[3], 10);
+        const month = months[mKey] !== undefined ? months[mKey] : 0;
+        let hour = 8, min = 0;
+        if (timeStr) {
+          const tm = String(timeStr).match(/(\d{1,2})[:.](\d{2})/);
+          if (tm) {
+            hour = parseInt(tm[1], 10);
+            min = parseInt(tm[2], 10);
+          }
+        }
+        return new Date(year, month, day, hour, min, 0);
+      }
+
+      const dotMatch = clean.match(/(\d{1,2})\s*\.\s*(\d{1,2})\s*\.\s*(\d{4})/);
+      if (dotMatch) {
+        return new Date(parseInt(dotMatch[3], 10), parseInt(dotMatch[2], 10) - 1, parseInt(dotMatch[1], 10), 8, 0, 0);
+      }
+      return null;
+    }
+
     // Load Local Draft if Present
     try {
       const saved = localStorage.getItem('wedding_custom_data');
       if (saved) {
         const parsed = JSON.parse(saved);
-        // Only override if custom data exists
         if (parsed.bride && parsed.groom) {
           Object.assign(data, parsed);
         }
@@ -1494,6 +1526,65 @@
     const guestParam = params.get('to');
     if (guestParam) {
       data.testGuest = guestParam.replace(/[-+]/g, ' ');
+    }
+
+    // Comments State
+    let storedComments = [];
+    try {
+      storedComments = JSON.parse(localStorage.getItem('wedding_comments_royal') || '[]');
+    } catch(e) {
+      storedComments = [];
+    }
+
+    function renderCommentsList() {
+      const container = document.getElementById('comments-container');
+      const countHadirEl = document.getElementById('count-hadir');
+      const countTidakEl = document.getElementById('count-tidak');
+      if (!container) return;
+
+      container.innerHTML = '';
+      if (!storedComments || storedComments.length === 0) {
+        container.innerHTML = `
+          <div style="background:rgba(255,255,255,0.7); border:1px dashed var(--border-gold); border-radius:var(--radius-md); padding:24px 16px; color:var(--text-muted); font-size:12px;">
+            Belum ada ucapan doa restu.<br>Jadilah yang pertama memberikan doa restu untuk kedua mempelai!
+          </div>
+        `;
+        if (countHadirEl) countHadirEl.textContent = '0';
+        if (countTidakEl) countTidakEl.textContent = '0';
+        return;
+      }
+
+      let hadir = 0, tidak = 0;
+      storedComments.forEach(c => {
+        if (c.status === 'Hadir') hadir++;
+        else tidak++;
+
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        const isH = c.status === 'Hadir';
+        item.innerHTML = `
+          <div class="comment-author-row">
+            <span class="comment-author">${c.author}</span>
+            <span class="comment-status-pill ${isH ? 'hadir' : 'tidak-hadir'}">${c.status}</span>
+          </div>
+          <p class="comment-body">${c.message}</p>
+        `;
+        container.appendChild(item);
+      });
+
+      if (countHadirEl) countHadirEl.textContent = hadir;
+      if (countTidakEl) countTidakEl.textContent = tidak;
+    }
+
+    // Countdown calculation
+    let targetCountdownTime = null;
+    function calculateCountdownTarget() {
+      const d = parseIndonesianDate(data.weddingDate || (data.akad && data.akad.date), data.akad && data.akad.time);
+      if (d && !isNaN(d.getTime())) {
+        targetCountdownTime = d.getTime();
+      } else {
+        targetCountdownTime = new Date('2026-08-15T09:00:00').getTime();
+      }
     }
 
     // Render Data into DOM
@@ -1522,10 +1613,11 @@
       const rsvpInput = document.getElementById('rsvp-input-name');
       if (rsvpInput) rsvpInput.value = data.testGuest || '';
 
-      // Dates
-      document.getElementById('hero-wedding-date').textContent = data.weddingDate;
+      // Dates (Sync across Gate, Hero, and Desktop)
+      const effectiveDate = (data.weddingDate || (data.akad && data.akad.date) || '').toUpperCase();
+      document.getElementById('hero-wedding-date').textContent = effectiveDate;
       const deskDate = document.getElementById('desk-wedding-date');
-      if (deskDate) deskDate.textContent = data.weddingDate;
+      if (deskDate) deskDate.textContent = effectiveDate;
 
       // Bride & Groom Details
       document.getElementById('bride-fullname').textContent = data.bride.name;
@@ -1542,11 +1634,15 @@
       document.getElementById('akad-date').textContent = data.akad.date;
       document.getElementById('akad-time').textContent = data.akad.time;
       document.getElementById('akad-venue').textContent = data.akad.venue;
+      const akadAddr = document.getElementById('akad-address');
+      if (akadAddr) akadAddr.textContent = data.akad.address || data.akad.venue;
       document.getElementById('akad-maps-btn').href = data.akad.maps || '#';
 
       document.getElementById('resepsi-date').textContent = data.resepsi.date;
       document.getElementById('resepsi-time').textContent = data.resepsi.time;
       document.getElementById('resepsi-venue').textContent = data.resepsi.venue;
+      const resepsiAddr = document.getElementById('resepsi-address');
+      if (resepsiAddr) resepsiAddr.textContent = data.resepsi.address || data.resepsi.venue;
       document.getElementById('resepsi-maps-btn').href = data.resepsi.maps || '#';
 
       // Bank
@@ -1560,11 +1656,29 @@
         document.getElementById('bank-logo-img').src = 'assets/template2/BCA_5770-1.webp';
       }
 
-      // Kirim Kado
+      // Kirim Kado Fisik (Alamat pengiriman kado yang disesuaikan)
       const recvName = document.getElementById('gift-receiver-name');
-      if (recvName) recvName.textContent = data.bride.name;
       const recvAddr = document.getElementById('gift-receiver-address');
-      if (recvAddr) recvAddr.textContent = `${data.akad.venue} (Alamat sesuai lokasi acara)`;
+      const copyAddrBtn = document.getElementById('btn-copy-address');
+      
+      const giftData = data.gift || {};
+      const giftReceiver = giftData.receiver || data.bride.name;
+      const giftAddress = giftData.address || 'Alamat penerima belum diatur';
+      const giftPhone = giftData.phone ? ` (HP: ${giftData.phone})` : '';
+      const giftNote = giftData.note ? `<br><small style="color:#d1d5db; font-style:italic;">Catatan: ${giftData.note}</small>` : '';
+
+      if (recvName) recvName.textContent = `${giftReceiver}${giftPhone}`;
+      if (recvAddr) recvAddr.innerHTML = `${giftAddress}${giftNote}`;
+      if (copyAddrBtn) {
+        copyAddrBtn.setAttribute('data-copy', `${giftReceiver}\n${giftData.phone ? 'HP: ' + giftData.phone + '\n' : ''}${giftAddress}`);
+      }
+
+      // Re-calculate countdown target
+      calculateCountdownTarget();
+      updateCountdown();
+
+      // Render Comments
+      renderCommentsList();
     }
 
     renderData();
@@ -1576,6 +1690,10 @@
       if (event.data && event.data.type === 'UPDATE_INVITATION_DATA') {
         const payload = event.data.payload;
         Object.assign(data, payload);
+        if (payload.clearComments) {
+          storedComments = [];
+          localStorage.removeItem('wedding_comments_royal');
+        }
         renderData();
       }
     });
@@ -1624,11 +1742,10 @@
     // =========================================================================
     // COUNTDOWN TIMER
     // =========================================================================
-    const targetDate = new Date('2026-08-15T09:00:00').getTime();
-
     function updateCountdown() {
+      if (!targetCountdownTime) calculateCountdownTarget();
       const now = new Date().getTime();
-      const diff = targetDate - now;
+      const diff = targetCountdownTime - now;
 
       if (diff > 0) {
         const days = Math.floor(diff / (1000 * 60 * 60 * 24));
@@ -1640,6 +1757,11 @@
         document.getElementById('timer-hours').textContent = String(hours).padStart(2, '0');
         document.getElementById('timer-minutes').textContent = String(mins).padStart(2, '0');
         document.getElementById('timer-seconds').textContent = String(secs).padStart(2, '0');
+      } else {
+        document.getElementById('timer-days').textContent = '00';
+        document.getElementById('timer-hours').textContent = '00';
+        document.getElementById('timer-minutes').textContent = '00';
+        document.getElementById('timer-seconds').textContent = '00';
       }
     }
 
@@ -1661,12 +1783,13 @@
       }
     });
 
-    // Copy to clipboard
+    // Copy to clipboard (Rekening & Alamat Kado)
     document.querySelectorAll('.btn-copy-rekening').forEach(btn => {
       btn.addEventListener('click', () => {
         const text = btn.getAttribute('data-copy');
+        if (!text) return;
         navigator.clipboard.writeText(text).then(() => {
-          showToast('Nomor rekening berhasil disalin!');
+          showToast('Berhasil disalin ke clipboard!');
         });
       });
     });
@@ -1698,9 +1821,6 @@
     });
 
     const rsvpForm = document.getElementById('rsvp-form');
-    const commentsContainer = document.getElementById('comments-container');
-    const countHadirEl = document.getElementById('count-hadir');
-    const countTidakEl = document.getElementById('count-tidak');
 
     rsvpForm.addEventListener('submit', (e) => {
       e.preventDefault();
@@ -1709,24 +1829,19 @@
 
       if (!name || !msg) return;
 
-      const item = document.createElement('div');
-      item.className = 'comment-item';
-      const isHadir = attendanceChoice === 'Hadir';
-      item.innerHTML = `
-        <div class="comment-author-row">
-          <span class="comment-author">${name}</span>
-          <span class="comment-status-pill ${isHadir ? 'hadir' : 'tidak-hadir'}">${attendanceChoice}</span>
-        </div>
-        <p class="comment-body">${msg}</p>
-      `;
-      commentsContainer.prepend(item);
+      const newEntry = {
+        author: name,
+        message: msg,
+        status: attendanceChoice,
+        date: new Date().toISOString()
+      };
 
-      if (isHadir) {
-        countHadirEl.textContent = parseInt(countHadirEl.textContent) + 1;
-      } else {
-        countTidakEl.textContent = parseInt(countTidakEl.textContent) + 1;
-      }
+      storedComments.unshift(newEntry);
+      try {
+        localStorage.setItem('wedding_comments_royal', JSON.stringify(storedComments));
+      } catch(e) {}
 
+      renderCommentsList();
       document.getElementById('rsvp-input-msg').value = '';
       showToast('Terima kasih atas doa restunya!');
     });
