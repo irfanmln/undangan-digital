@@ -316,7 +316,6 @@
       position: relative;
       min-height: 800px;
       height: 100vh;
-      background: linear-gradient(rgba(27, 45, 49, 0.55), rgba(27, 45, 49, 0.7)), url('assets/template2/VINT01-MOTION-FALLBACK-PII-1.jpg') center center/cover no-repeat;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -334,10 +333,11 @@
       border: 2px solid var(--accent-gold);
       border-radius: 200px 200px 20px 20px;
       padding: 60px 20px 50px;
-      background: rgba(27, 45, 49, 0.35);
+      background: rgba(27, 45, 49, 0.45);
       backdrop-filter: blur(4px);
       box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
       position: relative;
+      z-index: 2;
       box-sizing: border-box;
     }
 
@@ -1128,6 +1128,77 @@
       to { transform: rotate(360deg); }
     }
 
+    /* =========================================================================
+       SCROLL REVEAL & ELEMENTOR ENTRANCE ANIMATIONS (MATCHING REFERENCE)
+       ========================================================================= */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    .reveal-on-scroll.fade-left {
+      transform: translateX(-40px);
+    }
+
+    .reveal-on-scroll.fade-right {
+      transform: translateX(40px);
+    }
+
+    .reveal-on-scroll.zoom-in {
+      transform: scale(0.88);
+    }
+
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+
+    .delay-1 { transition-delay: 0.12s; }
+    .delay-2 { transition-delay: 0.22s; }
+    .delay-3 { transition-delay: 0.32s; }
+    .delay-4 { transition-delay: 0.42s; }
+
+    /* Hero Ken Burns Motion Effect */
+    .hero-bg-motion {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(27, 45, 49, 0.52), rgba(27, 45, 49, 0.72)), url('assets/template2/VINT01-MOTION-FALLBACK-PII-1.jpg') center center/cover no-repeat;
+      animation: kenBurns 20s ease-in-out infinite alternate;
+      z-index: 1;
+      will-change: transform;
+    }
+
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.14); }
+    }
+
+    /* Floating & Pulsing effects matching reference */
+    @keyframes softBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-7px); }
+    }
+    .float-invitation {
+      animation: softBounce 3s ease-in-out infinite;
+    }
+
+    @keyframes goldGlow {
+      0%, 100% {
+        box-shadow: 0 6px 20px rgba(196, 154, 69, 0.25);
+      }
+      50% {
+        box-shadow: 0 10px 30px rgba(196, 154, 69, 0.55);
+      }
+    }
+    .glow-gold {
+      animation: goldGlow 3.5s ease-in-out infinite;
+    }
+
     /* Toast */
     .toast {
       position: fixed;
@@ -1180,7 +1251,7 @@
 
       <!-- 1. GATE / COVER OVERLAY -->
       <div id="gate-overlay" class="gate-overlay">
-        <div class="gate-monogram-box">
+        <div class="gate-monogram-box glow-gold">
           <div id="gate-monogram-text" class="gate-monogram-inner">GH</div>
         </div>
 
@@ -1192,7 +1263,7 @@
           <div id="guest-name-display" class="guest-card-name">Tamu Undangan</div>
         </div>
 
-        <button id="btn-open-gate" class="btn-open-invitation">
+        <button id="btn-open-gate" class="btn-open-invitation float-invitation">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
           Buka Undangan
         </button>
@@ -1200,7 +1271,8 @@
 
       <!-- 2. HERO / OPENING -->
       <section class="section-hero">
-        <div class="hero-arch-frame">
+        <div class="hero-bg-motion"></div>
+        <div class="hero-arch-frame reveal-on-scroll zoom-in">
           <div class="hero-pretitle">The Wedding Of</div>
           <h1 id="hero-couple-names" class="hero-couple-names">Gini &amp; Hafid</h1>
           <div id="hero-wedding-date" class="hero-date-tag">15. 08. 2026</div>
@@ -1210,22 +1282,22 @@
 
       <!-- 3. QUOTE / AYAT -->
       <section class="section-quote">
-        <div id="quote-monogram" class="quote-crest-monogram">GH</div>
-        <p class="quote-arabic-or-text">
+        <div id="quote-monogram" class="quote-crest-monogram reveal-on-scroll zoom-in glow-gold">GH</div>
+        <p class="quote-arabic-or-text reveal-on-scroll delay-1">
           "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang. Sesungguhnya pada yang demikian itu benar-benar terdapat tanda-tanda (kebesaran Allah) bagi kaum yang berpikir."
         </p>
-        <div class="quote-reference">(Qs. Ar-Rum : 21)</div>
+        <div class="quote-reference reveal-on-scroll delay-2">(Qs. Ar-Rum : 21)</div>
       </section>
 
       <!-- 4. MEMPELAI PRIA & WANITA -->
       <section class="section-mempelai">
-        <h2 class="salam-title">Assalamu'alaikum Wr. Wb.</h2>
-        <p class="salam-desc">
+        <h2 class="salam-title reveal-on-scroll">Assalamu'alaikum Wr. Wb.</h2>
+        <p class="salam-desc reveal-on-scroll delay-1">
           Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami:
         </p>
 
         <!-- Mempelai Wanita -->
-        <div class="mempelai-card">
+        <div class="mempelai-card reveal-on-scroll fade-left delay-2">
           <div class="mempelai-role">Mempelai Wanita</div>
           <h3 id="bride-fullname" class="mempelai-fullname">Gini Aprilliani M.Ag</h3>
           <p id="bride-parents" class="mempelai-parents">Putri dari Bapak Apad Supadma (Alm) &amp; Ibu Ai Rosnawati</p>
@@ -1235,10 +1307,10 @@
           </a>
         </div>
 
-        <div class="couple-divider">&amp;</div>
+        <div class="couple-divider reveal-on-scroll zoom-in delay-2">&amp;</div>
 
         <!-- Mempelai Pria -->
-        <div class="mempelai-card">
+        <div class="mempelai-card reveal-on-scroll fade-right delay-3">
           <div class="mempelai-role">Mempelai Pria</div>
           <h3 id="groom-fullname" class="mempelai-fullname">Muhammad Hafidhuddien S.Ag</h3>
           <p id="groom-parents" class="mempelai-parents">Putra dari Bapak Azis Subchan Subiyanto &amp; Ibu Nina Nurhanizar Nasution</p>
@@ -1251,14 +1323,14 @@
 
       <!-- 5. WAKTU & LOKASI ACARA -->
       <section id="date" class="section-acara">
-        <div class="acara-heading-wrap">
+        <div class="acara-heading-wrap reveal-on-scroll">
           <div class="acara-super-title">Save The Date</div>
           <h2 class="acara-main-title">Hari Bahagia</h2>
           <p class="acara-blurb">Dan kami bersyukur, dipertemukan Allah di waktu terbaik. Kini kami menanti hari istimewa kami.</p>
         </div>
 
         <!-- Countdown Timer -->
-        <div class="countdown-grid">
+        <div class="countdown-grid reveal-on-scroll zoom-in delay-1">
           <div class="countdown-card">
             <div id="timer-days" class="countdown-num">00</div>
             <div class="countdown-unit">Hari</div>
@@ -1278,7 +1350,7 @@
         </div>
 
         <!-- Card Akad Nikah -->
-        <div class="acara-card">
+        <div class="acara-card reveal-on-scroll delay-2">
           <h3 class="acara-type-title">Akad Nikah</h3>
           <img src="assets/template2/DW-ED-1.png" alt="Divider" class="divider-ornament-img">
           <div id="akad-date" class="acara-date-text">Sabtu, 15 Agustus 2026</div>
@@ -1292,7 +1364,7 @@
         </div>
 
         <!-- Card Resepsi -->
-        <div class="acara-card">
+        <div class="acara-card reveal-on-scroll delay-3">
           <h3 class="acara-type-title">Resepsi Pernikahan</h3>
           <img src="assets/template2/DW-ED-1.png" alt="Divider" class="divider-ornament-img">
           <div id="resepsi-date" class="acara-date-text">Sabtu, 15 Agustus 2026</div>
@@ -1308,19 +1380,19 @@
 
       <!-- 6. LOVE STORY TIMELINE -->
       <section class="section-lovestory">
-        <h2 class="lovestory-title">Love Story</h2>
+        <h2 class="lovestory-title reveal-on-scroll">Love Story</h2>
 
-        <div class="story-card">
+        <div class="story-card reveal-on-scroll delay-1">
           <h4 class="story-step-title">🌱 Awal Cerita</h4>
           <p class="story-desc">Berawal dari pertemuan sederhana, kami saling mengenal dan mulai berbagi banyak cerita. Tanpa disadari, kebersamaan itu tumbuh menjadi rasa nyaman yang semakin kuat dari hari ke hari.</p>
         </div>
 
-        <div class="story-card">
+        <div class="story-card reveal-on-scroll delay-2">
           <h4 class="story-step-title">💍 Lamaran</h4>
           <p class="story-desc">Dengan niat yang tulus dan restu keluarga, kami memutuskan untuk melangkah ke tahap yang lebih serius. Momen lamaran menjadi awal dari perjalanan baru yang penuh harapan dan doa baik.</p>
         </div>
 
-        <div class="story-card">
+        <div class="story-card reveal-on-scroll delay-3">
           <h4 class="story-step-title">🕊️ Pernikahan</h4>
           <p class="story-desc">Kini kami sampai pada hari yang kami nantikan, hari di mana dua hati dipersatukan dalam ikatan suci pernikahan. Semoga langkah ini menjadi awal kehidupan baru yang penuh berkah.</p>
         </div>
@@ -1328,10 +1400,10 @@
 
       <!-- 7. AMPLOP DIGITAL (CASHLESS GIFT) -->
       <section class="section-amplop">
-        <h2 class="amplop-title">Amplop Digital</h2>
-        <p class="amplop-desc">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Jika memberi adalah ungkapan tanda kasih, Anda dapat memberikan kado secara cashless:</p>
+        <h2 class="amplop-title reveal-on-scroll">Amplop Digital</h2>
+        <p class="amplop-desc reveal-on-scroll delay-1">Doa restu Anda merupakan karunia yang sangat berarti bagi kami. Jika memberi adalah ungkapan tanda kasih, Anda dapat memberikan kado secara cashless:</p>
 
-        <button id="btn-toggle-amplop" class="btn-toggle-amplop">
+        <button id="btn-toggle-amplop" class="btn-toggle-amplop reveal-on-scroll delay-2">
           Klik di Sini
         </button>
 
@@ -1369,11 +1441,11 @@
 
       <!-- 8. RSVP & UCAPAN BUKU TAMU -->
       <section class="section-rsvp">
-        <h2 class="rsvp-title">Ucapkan Sesuatu</h2>
-        <p class="rsvp-desc">Berikan ucapan doa restu dan konfirmasi kehadiran Anda untuk kedua mempelai.</p>
+        <h2 class="rsvp-title reveal-on-scroll">Ucapkan Sesuatu</h2>
+        <p class="rsvp-desc reveal-on-scroll delay-1">Berikan ucapan doa restu dan konfirmasi kehadiran Anda untuk kedua mempelai.</p>
 
         <!-- Summary -->
-        <div class="attendance-badges">
+        <div class="attendance-badges reveal-on-scroll delay-2">
           <div class="att-badge hadir">
             <span>✓</span> <span id="count-hadir">0</span> Hadir
           </div>
@@ -1383,7 +1455,7 @@
         </div>
 
         <!-- Form RSVP -->
-        <form id="rsvp-form" class="rsvp-form-card">
+        <form id="rsvp-form" class="rsvp-form-card reveal-on-scroll delay-3">
           <label class="form-label">Nama Anda</label>
           <input type="text" id="rsvp-input-name" class="form-input" placeholder="Nama Lengkap" required>
 
@@ -1407,12 +1479,12 @@
 
       <!-- 9. CLOSING & SALAM -->
       <section class="section-closing">
-        <div id="closing-monogram" class="closing-monogram">GH</div>
-        <p class="closing-text">
+        <div id="closing-monogram" class="closing-monogram reveal-on-scroll zoom-in glow-gold">GH</div>
+        <p class="closing-text reveal-on-scroll delay-1">
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu. Atas kehadiran dan doa restunya, kami mengucapkan terima kasih.
         </p>
-        <div class="closing-salam">Wassalamu'alaikum Wr. Wb.</div>
-        <div id="closing-names" class="closing-names">Gini &amp; Hafid</div>
+        <div class="closing-salam reveal-on-scroll delay-2">Wassalamu'alaikum Wr. Wb.</div>
+        <div id="closing-names" class="closing-names reveal-on-scroll delay-3">Gini &amp; Hafid</div>
       </section>
 
       <!-- FOOTER -->
@@ -1619,6 +1691,15 @@
       const deskDate = document.getElementById('desk-wedding-date');
       if (deskDate) deskDate.textContent = effectiveDate;
 
+      // Hero Photo / Motion Background
+      const mainPhoto = data.heroPhoto || (data.gallery && data.gallery[0]);
+      if (mainPhoto) {
+        const heroBg = document.querySelector('.hero-bg-motion');
+        if (heroBg) {
+          heroBg.style.backgroundImage = `linear-gradient(rgba(27, 45, 49, 0.52), rgba(27, 45, 49, 0.72)), url('${mainPhoto}')`;
+        }
+      }
+
       // Bride & Groom Details
       document.getElementById('bride-fullname').textContent = data.bride.name;
       document.getElementById('bride-parents').textContent = data.bride.parents;
@@ -1737,6 +1818,30 @@
     btnOpenGate.addEventListener('click', () => {
       gateOverlay.classList.add('opened');
       playMusic();
+      // Reveal the hero arch frame as gate slides up
+      setTimeout(() => {
+        const heroFrame = document.querySelector('.section-hero .hero-arch-frame');
+        if (heroFrame) heroFrame.classList.add('is-visible');
+      }, 350);
+    });
+
+    // =========================================================================
+    // SCROLL REVEAL OBSERVER (ELEMENTOR ANIMATE.CSS PARITY)
+    // =========================================================================
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.08,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.reveal-on-scroll').forEach(el => {
+      revealObserver.observe(el);
     });
 
     // =========================================================================
