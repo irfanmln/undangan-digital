@@ -535,13 +535,18 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Gallery Photos (Dynamic Rendering)
+    // Gallery Photos (Dynamic Rendering with Automatic Deduplication)
     const galleryGrid = document.getElementById('gallery-grid') || document.querySelector('.gallery-grid');
     if (galleryGrid) {
-      if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
+      // Deduplicate photos using Set to guarantee 100% uniqueness
+      const uniqueGallery = data.gallery && Array.isArray(data.gallery)
+        ? Array.from(new Set(data.gallery)).filter(Boolean)
+        : [];
+
+      if (uniqueGallery.length > 0) {
         galleryGrid.innerHTML = '';
-        imageSources = [...data.gallery];
-        data.gallery.forEach((photoUrl, idx) => {
+        imageSources = [...uniqueGallery];
+        uniqueGallery.forEach((photoUrl, idx) => {
           const item = document.createElement('div');
           item.className = `gallery-item ${idx % 3 === 0 ? 'tall' : 'wide'}`;
           item.setAttribute('data-full', photoUrl);

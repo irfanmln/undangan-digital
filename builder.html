@@ -689,18 +689,33 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .gallery-size-tag {
+    .gallery-delete-btn {
       position: absolute;
-      bottom: 4px;
-      left: 4px;
-      background: rgba(0, 0, 0, 0.7);
+      top: 4px;
+      right: 4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(220, 38, 38, 0.9);
       color: #ffffff;
-      font-size: 8px;
-      padding: 1px 4px;
-      border-radius: 4px;
-      font-weight: 600;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+      z-index: 2;
+    }
+
+    .gallery-delete-btn:hover {
+      background: #b91c1c;
+      transform: scale(1.1);
     }
 
     /* Tab panels visibility */
@@ -1483,8 +1498,8 @@
 
               <!-- Additional Gallery Dropzone -->
               <div class="sub-heading">📷 Galeri Foto Prewedding Tambahan</div>
+              <input type="file" id="file-uploader" accept="image/*" multiple style="display:none;">
               <div id="dropzone" class="compressor-dropzone">
-                <input type="file" id="file-uploader" accept="image/*" multiple style="display:none;">
                 <svg class="compressor-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
                 <div class="compressor-title">Sentuh atau Tarik Foto ke Sini</div>
                 <div class="compressor-subtitle">Pilih foto dari galeri atau kamera HP Anda</div>
@@ -1658,6 +1673,9 @@
       const saved = localStorage.getItem('wedding_custom_data');
       if (saved) {
         mergeDeep(state, JSON.parse(saved));
+        if (state.gallery && Array.isArray(state.gallery)) {
+          state.gallery = Array.from(new Set(state.gallery)).filter(Boolean);
+        }
       }
       const savedGuests = localStorage.getItem('wedding_guest_list');
       if (savedGuests) {
@@ -2109,47 +2127,67 @@
     const dropzone = document.getElementById('dropzone');
     const fileUploader = document.getElementById('file-uploader');
     const galleryGrid = document.getElementById('gallery-preview-grid');
-    const savingsBanner = document.getElementById('savings-banner');
-    const savingsPercent = document.getElementById('savings-percent');
-    const savingsRaw = document.getElementById('savings-raw');
-    const savingsWebp = document.getElementById('savings-webp');
 
-    let totalRawBytes = 0;
-    let totalWebpBytes = 0;
+    function renderGalleryThumbnails() {
+      if (!galleryGrid) return;
+      galleryGrid.innerHTML = '';
+      if (!state.gallery || state.gallery.length === 0) {
+        galleryGrid.innerHTML = '<div style="grid-column: 1 / -1; font-size:12px; color:var(--stone-400); font-style:italic; padding:6px 0;">Belum ada foto galeri tambahan yang diunggah.</div>';
+        return;
+      }
 
-    function formatKB(bytes) {
-      if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(0) + ' KB';
-      return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+      state.gallery.forEach((url, idx) => {
+        const card = document.createElement('div');
+        card.className = 'gallery-preview-item';
+        card.innerHTML = `
+          <img src="${url}" alt="Foto Galeri ${idx + 1}">
+          <button type="button" class="gallery-delete-btn" title="Hapus foto ini" data-index="${idx}">✕</button>
+        `;
+        const delBtn = card.querySelector('.gallery-delete-btn');
+        delBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          state.gallery.splice(idx, 1);
+          renderGalleryThumbnails();
+          syncPreview();
+          showToast('Foto berhasil dihapus.');
+        });
+        galleryGrid.appendChild(card);
+      });
     }
 
     async function handleImageFiles(files) {
+      if (!files || files.length === 0) return;
       showToast(`Menambahkan ${files.length} foto ke galeri...`);
+      let added = 0;
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (!file.type.startsWith('image/')) continue;
         try {
           const result = await compressToWebP(file);
 
-          state.gallery.push(result.dataUrl);
-          if (!state.heroPhoto && state.gallery.length === 1) {
-            state.heroPhoto = result.dataUrl;
-            document.getElementById('hero-photo-thumb').src = result.dataUrl;
-            document.getElementById('btn-reset-hero-photo').style.display = 'inline-block';
+          // Prevent duplicate photos
+          if (!state.gallery.includes(result.dataUrl)) {
+            state.gallery.push(result.dataUrl);
+            added++;
+            if (!state.heroPhoto && state.gallery.length === 1) {
+              state.heroPhoto = result.dataUrl;
+              document.getElementById('hero-photo-thumb').src = result.dataUrl;
+              document.getElementById('btn-reset-hero-photo').style.display = 'inline-block';
+            }
           }
-
-          const card = document.createElement('div');
-          card.className = 'gallery-preview-item';
-          card.innerHTML = `
-            <img src="${result.dataUrl}" alt="Foto Galeri">
-          `;
-          galleryGrid.appendChild(card);
         } catch(err) {
           console.error(err);
         }
       }
 
+      if (fileUploader) fileUploader.value = '';
+      renderGalleryThumbnails();
       syncPreview();
-      showToast('Foto galeri berhasil disimpan!');
+      if (added > 0) {
+        showToast(`${added} foto berhasil ditambahkan ke galeri!`);
+      } else {
+        showToast('Foto sudah ada di galeri (tidak diduplikat).');
+      }
     }
 
     if (dropzone && fileUploader) {
@@ -2168,6 +2206,9 @@
         if (e.target.files) handleImageFiles(e.target.files);
       });
     }
+
+    // Initial render of gallery thumbnails from loaded state
+    renderGalleryThumbnails();
 
     // =========================================================================
     // TAB 6: SIMULASI TAMU (PRATINJAU DESAIN)
