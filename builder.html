@@ -1208,8 +1208,8 @@
           </li>
           <li>
             <button class="nav-item-btn" data-target="tab-tamu">
-              <span class="nav-icon">✉️</span>
-              <span>Daftar Tamu &amp; Sebar WA</span>
+              <span class="nav-icon">👁️</span>
+              <span>Simulasi Tamu &amp; Buku Tamu</span>
             </button>
           </li>
         </ul>
@@ -1585,54 +1585,54 @@
                   ⬅ Kembali
                 </button>
                 <button class="btn btn-primary next-step-btn" data-next="tab-tamu">
-                  Lanjut: Daftar Tamu &amp; Sebar WA ➔
+                  Lanjut: Simulasi Tamu &amp; Buku Tamu ➔
                 </button>
               </div>
             </section>
 
-            <!-- TAB 6: Daftar Tamu & Sebar WhatsApp -->
+            <!-- TAB 6: Simulasi Tamu & Buku Tamu -->
             <section id="tab-tamu" class="tab-section">
               <div class="section-header">
-                <h2 class="section-title">Daftar Tamu &amp; Sebar Undangan WhatsApp</h2>
-                <p class="section-desc">Kelola daftar tamu, buat link unik per tamu secara instan, dan sebar langsung via WhatsApp dengan pesan personal.</p>
+                <h2 class="section-title">Simulasi Tampilan Tamu &amp; Buku Tamu</h2>
+                <p class="section-desc">Uji coba tampilan nama tamu pada sampul undangan dan pastikan buku tamu bersih sebelum disebar.</p>
               </div>
 
-              <!-- Form Tambah Tamu -->
-              <div class="guest-add-box">
-                <div class="sub-heading" style="margin-top:0;">➕ Tambah Tamu Baru</div>
-                <div class="form-grid">
-                  <div class="form-group">
-                    <label>Nama Tamu / Keluarga</label>
-                    <input type="text" id="input-new-guest-name" placeholder="Contoh: Bpk. Bambang &amp; Istri">
-                  </div>
-                  <div class="form-group">
-                    <label>Nomor WhatsApp (Opsional)</label>
-                    <input type="text" id="input-new-guest-phone" placeholder="Contoh: 08123456789 atau 62812...">
-                  </div>
+              <!-- Integration Alert with Siap Nikah -->
+              <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-md); padding:16px 18px; margin-bottom:24px; display:flex; align-items:flex-start; gap:14px;">
+                <span style="font-size:24px; line-height:1;">💡</span>
+                <div style="font-size:13px; line-height:1.6; color:#166534;">
+                  <b style="font-size:14px; color:#14532d;">Terintegrasi dengan Aplikasi Siap Nikah:</b><br>
+                  Seluruh daftar nama tamu (keluarga pria/wanita, teman, rekan kantor, porsi katering, status kirim) serta <b>tombol kirim undangan via WhatsApp</b> dikelola langsung dari menu <b>Daftar Tamu Undangan</b> di aplikasi utama <b>Siap Nikah</b>.<br>
+                  Di dashboard builder ini, Anda fokus mendesain undangan dan menguji coba tampilan kartu nama tamu pada sampul pratinjau.
                 </div>
-                <button type="button" id="btn-add-guest" class="btn btn-primary" style="font-size:12px; padding:8px 18px;">
-                  ➕ Tambahkan ke Daftar
-                </button>
               </div>
 
-              <!-- WhatsApp Template Message Box -->
-              <div class="wa-template-box">
-                <div class="sub-heading">💬 Template Pesan WhatsApp</div>
-                <p class="section-desc" style="margin-bottom:8px;">Gunakan tag <code>{nama}</code>, <code>{mempelai}</code>, <code>{tanggal}</code>, dan <code>{link}</code> untuk pesan otomatis.</p>
-                <textarea id="input-wa-template" rows="6"></textarea>
-              </div>
+              <!-- Simulasi Nama Tamu -->
+              <div class="guest-add-box" style="margin-bottom:24px;">
+                <div class="sub-heading" style="margin-top:0;">🎯 Uji Coba Nama Tamu di Sampul</div>
+                <p class="section-desc" style="margin-bottom:12px;">Ketik nama tamu di bawah untuk melihat langsung bagaimana namanya tercetak pada kartu sampul &amp; amplop di pratinjau HP:</p>
+                
+                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
+                  <input type="text" id="input-test-guest" placeholder="Contoh: Bpk. Bambang &amp; Istri" style="flex:1; min-width:240px; padding:10px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-size:14px; font-weight:600;">
+                  <button type="button" id="btn-apply-test-guest" class="btn btn-primary" style="font-size:13px; padding:10px 18px;">
+                    👁️ Terapkan ke Pratinjau
+                  </button>
+                </div>
 
-              <!-- Guest List -->
-              <div class="sub-heading">📋 Daftar Tamu (<span id="guest-count">0</span>)</div>
-              <div id="guest-list-wrap" class="guest-list-container">
-                <!-- Dynamically populated via JS -->
+                <div style="font-size:12px; color:var(--stone-500); margin-bottom:6px;">Contoh Cepat:</div>
+                <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Keluarga Besar Legache 3.4" style="font-size:12px; padding:6px 12px;">Keluarga Besar Legache 3.4</button>
+                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Bpk. Bambang &amp; Istri" style="font-size:12px; padding:6px 12px;">Bpk. Bambang &amp; Istri</button>
+                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Sahabat Kuliah (Rizky &amp; Rina)" style="font-size:12px; padding:6px 12px;">Sahabat Kuliah (Rizky &amp; Rina)</button>
+                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Ocha Geniarsyah" style="font-size:12px; padding:6px 12px;">Ocha Geniarsyah</button>
+                </div>
               </div>
 
               <!-- Reset / Management Wishes Section -->
-              <div style="margin-top:36px; padding:20px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--stone-50);">
+              <div style="margin-top:20px; padding:20px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--stone-50);">
                 <div class="sub-heading" style="margin-top:0; color:var(--stone-800);">💌 Kelola Buku Tamu &amp; Ucapan Doa Restu</div>
                 <p class="section-desc" style="margin-bottom:14px;">
-                  Secara default untuk undangan yang siap disebar ke publik, buku tamu harus bersih dari ucapan dummy agar tamu asli yang mengisinya.
+                  Sebelum undangan disebarkan secara resmi ke para tamu, kosongkan buku tamu agar tamu-tamu asli Anda yang mengisinya pertama kali.
                 </p>
                 <div style="display:flex; gap:10px; flex-wrap:wrap;">
                   <button type="button" id="btn-clear-wishes" class="btn btn-secondary" style="color:#ef4444; border-color:#fca5a5;">
@@ -2256,9 +2256,42 @@
     }
 
     // =========================================================================
-    // GUEST LIST MANAGER & WHATSAPP SHARING
+    // TAB 6: SIMULASI TAMU (PRATINJAU DESAIN)
     // =========================================================================
+    const inputTestGuest = document.getElementById('input-test-guest');
+    const btnApplyTestGuest = document.getElementById('btn-apply-test-guest');
+
+    if (inputTestGuest) {
+      inputTestGuest.value = state.testGuest || 'Keluarga Besar Legache 3.4';
+      inputTestGuest.addEventListener('input', (e) => {
+        state.testGuest = e.target.value.trim() || 'Nama Tamu Undangan';
+        syncPreview();
+      });
+    }
+
+    if (btnApplyTestGuest && inputTestGuest) {
+      btnApplyTestGuest.addEventListener('click', () => {
+        const val = inputTestGuest.value.trim();
+        state.testGuest = val || 'Nama Tamu Undangan';
+        syncPreview();
+        showToast(`Pratinjau sampul diperbarui untuk: ${state.testGuest}`);
+        if (window.innerWidth < 1024) setMobileView('preview');
+      });
+    }
+
+    document.querySelectorAll('.btn-quick-guest').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const name = btn.getAttribute('data-name');
+        if (inputTestGuest) inputTestGuest.value = name;
+        state.testGuest = name;
+        syncPreview();
+        showToast(`Pratinjau sampul diset ke: ${name}`);
+        if (window.innerWidth < 1024) setMobileView('preview');
+      });
+    });
+
     const guestListWrap = document.getElementById('guest-list-wrap');
+    if (guestListWrap) {
     const guestCountEl = document.getElementById('guest-count');
     const inputGuestName = document.getElementById('input-new-guest-name');
     const inputGuestPhone = document.getElementById('input-new-guest-phone');
@@ -2394,7 +2427,8 @@
         showToast(`Tamu "${name}" berhasil ditambahkan!`);
       });
     }
-    renderGuestList();
+      renderGuestList();
+    }
 
     // =========================================================================
     // BUKU TAMU / WISHES MANAGEMENT (Reset from zero / Demo)
