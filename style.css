@@ -1666,3 +1666,53 @@ footer {
   .atm-card { height: 180px; padding: 16px; }
   .atm-card-number { font-size: 18px; }
 }
+
+/* Floating Romantic Garden Petals / Leaves (All-Template Parity) */
+.floating-petals-overlay {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 480px;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10001;
+  overflow: hidden;
+}
+
+.floating-petal {
+  position: absolute;
+  top: -40px;
+  user-select: none;
+  pointer-events: none;
+  font-size: 16px;
+  opacity: 0;
+  animation: petalFallFloat linear infinite;
+  will-change: transform, opacity;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+}
+
+.floating-petal.p1 { left: 12%; animation-duration: 11s; animation-delay: 0s; font-size: 14px; }
+.floating-petal.p2 { left: 35%; animation-duration: 14s; animation-delay: 3s; font-size: 18px; }
+.floating-petal.p3 { left: 58%; animation-duration: 12s; animation-delay: 1.5s; font-size: 15px; }
+.floating-petal.p4 { left: 80%; animation-duration: 15s; animation-delay: 4.5s; font-size: 17px; }
+.floating-petal.p5 { left: 24%; animation-duration: 13s; animation-delay: 7s; font-size: 13px; }
+.floating-petal.p6 { left: 70%; animation-duration: 16s; animation-delay: 9s; font-size: 16px; }
+
+@keyframes petalFallFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(0) translateX(0) rotate(0deg);
+  }
+  10% {
+    opacity: 0.75;
+  }
+  85% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(105vh) translateX(65px) rotate(380deg);
+  }
+}
