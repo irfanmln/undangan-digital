@@ -105,6 +105,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 6. Copy Account Number with Toast Notification
   const btnCopyAcc = document.getElementById('btn-copy-acc');
+  const btnCopyAddress = document.getElementById('btn-copy-address');
   const toastNotice = document.getElementById('toast-notice');
 
   if (btnCopyAcc && toastNotice) {
@@ -121,6 +122,24 @@ document.addEventListener('DOMContentLoaded', () => {
         document.execCommand('copy');
         document.body.removeChild(textarea);
         showToast('Nomor rekening berhasil disalin!');
+      });
+    });
+  }
+
+  if (btnCopyAddress && toastNotice) {
+    btnCopyAddress.addEventListener('click', () => {
+      const copyText = btnCopyAddress.getAttribute('data-copy') || '';
+      if (!copyText) return;
+      navigator.clipboard.writeText(copyText).then(() => {
+        showToast('Alamat kado fisik berhasil disalin!');
+      }).catch(() => {
+        const textarea = document.createElement('textarea');
+        textarea.value = copyText;
+        document.body.appendChild(textarea);
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+        showToast('Alamat kado fisik berhasil disalin!');
       });
     });
   }
@@ -221,7 +240,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Retrieve stored comments from localStorage or use initial
   const storedCustom = JSON.parse(localStorage.getItem('alni_raka_custom_wishes') || '[]');
-  const allComments = [...storedCustom, ...initialComments];
+  const hasCustomData = !!localStorage.getItem('wedding_custom_data');
+  const allComments = hasCustomData ? [...storedCustom] : [...storedCustom, ...initialComments];
 
   const itemsPerPage = 10;
   let currentPage = 1;
@@ -471,12 +491,14 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.akad.date && document.getElementById('akad-date')) document.getElementById('akad-date').textContent = data.akad.date;
       if (data.akad.time && document.getElementById('akad-time')) document.getElementById('akad-time').textContent = data.akad.time;
       if (data.akad.venue && document.getElementById('akad-venue')) document.getElementById('akad-venue').textContent = data.akad.venue;
+      if (data.akad.address && document.getElementById('akad-address')) document.getElementById('akad-address').textContent = data.akad.address;
       if (data.akad.maps && document.getElementById('akad-maps')) document.getElementById('akad-maps').href = data.akad.maps;
     }
     if (data.resepsi) {
       if (data.resepsi.date && document.getElementById('resepsi-date')) document.getElementById('resepsi-date').textContent = data.resepsi.date;
       if (data.resepsi.time && document.getElementById('resepsi-time')) document.getElementById('resepsi-time').textContent = data.resepsi.time;
       if (data.resepsi.venue && document.getElementById('resepsi-venue')) document.getElementById('resepsi-venue').textContent = data.resepsi.venue;
+      if (data.resepsi.address && document.getElementById('resepsi-address')) document.getElementById('resepsi-address').textContent = data.resepsi.address;
       if (data.resepsi.maps && document.getElementById('resepsi-maps')) document.getElementById('resepsi-maps').href = data.resepsi.maps;
     }
 
@@ -491,6 +513,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (data.bank.holder) {
         const bankHolder = document.getElementById('bank-acc-holder');
         if (bankHolder) bankHolder.textContent = `A/n ${data.bank.holder}`;
+      }
+    }
+
+    // Physical Gift Card
+    if (data.gift) {
+      const recvName = document.getElementById('gift-receiver-name');
+      const recvAddr = document.getElementById('gift-receiver-address');
+      const copyAddrBtn = document.getElementById('btn-copy-address');
+      const giftReceiver = data.gift.receiver || (data.bride && data.bride.name) || 'Kania Safitri';
+      const giftAddress = data.gift.address || 'Alamat penerima belum diatur';
+      const giftPhone = data.gift.phone ? ` (HP: ${data.gift.phone})` : '';
+      const giftNote = data.gift.note ? `<br><small style="color:#777; font-style:italic;">Catatan: ${data.gift.note}</small>` : '';
+
+      if (recvName) recvName.textContent = `${giftReceiver}${giftPhone}`;
+      if (recvAddr) recvAddr.innerHTML = `${giftAddress}${giftNote}`;
+      if (copyAddrBtn) {
+        copyAddrBtn.setAttribute('data-copy', `${giftReceiver}\n${data.gift.phone ? 'HP: ' + data.gift.phone + '\n' : ''}${giftAddress}`);
       }
     }
 
