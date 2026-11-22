@@ -2128,6 +2128,11 @@
     }
 
     renderData();
+    try {
+      if (window.parent && window.parent !== window) {
+        window.parent.postMessage({ type: 'TEMPLATE_READY' }, '*');
+      }
+    } catch(e) {}
 
     // =========================================================================
     // POSTMESSAGE RECEIVER (Real-time Live Sync from Smart Builder)

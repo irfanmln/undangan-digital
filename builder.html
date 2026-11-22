@@ -1197,7 +1197,7 @@
           <li>
             <button class="nav-item-btn" data-target="tab-galeri">
               <span class="nav-icon">🖼️</span>
-              <span>Galeri Foto (Auto-WebP)</span>
+              <span>Foto &amp; Galeri</span>
             </button>
           </li>
           <li>
@@ -1206,21 +1206,7 @@
               <span>Rekening &amp; Kado Digital</span>
             </button>
           </li>
-          <li>
-            <button class="nav-item-btn" data-target="tab-tamu">
-              <span class="nav-icon">👁️</span>
-              <span>Simulasi Tamu &amp; Buku Tamu</span>
-            </button>
-          </li>
         </ul>
-      </div>
-
-      <!-- Bottom Part: Storage Guard -->
-      <div class="sidebar-bottom">
-        <div class="storage-shield-card">
-          <span style="font-size:14px;">⚡</span>
-          <span>Storage Shield: Auto-WebP Aktif</span>
-        </div>
       </div>
     </aside>
 
@@ -1312,7 +1298,7 @@
                 <img id="bride-photo-thumb" src="assets/images/41e.jpg" alt="Foto Mempelai Wanita" class="photo-upload-thumb">
                 <div class="photo-upload-info">
                   <div class="photo-upload-title">Foto Mempelai Wanita</div>
-                  <div class="photo-upload-desc">Tampil pada profil mempelai. Otomatis dikompres ke WebP.</div>
+                  <div class="photo-upload-desc">Foto profil mempelai wanita</div>
                   <div class="photo-upload-actions">
                     <input type="file" id="bride-photo-file" accept="image/*" style="display:none;">
                     <button type="button" id="btn-trigger-bride-photo" class="btn-upload-trigger">
@@ -1349,7 +1335,7 @@
                 <img id="groom-photo-thumb" src="assets/images/94c.jpg" alt="Foto Mempelai Pria" class="photo-upload-thumb">
                 <div class="photo-upload-info">
                   <div class="photo-upload-title">Foto Mempelai Pria</div>
-                  <div class="photo-upload-desc">Tampil pada profil mempelai. Otomatis dikompres ke WebP.</div>
+                  <div class="photo-upload-desc">Foto profil mempelai pria</div>
                   <div class="photo-upload-actions">
                     <input type="file" id="groom-photo-file" accept="image/*" style="display:none;">
                     <button type="button" id="btn-trigger-groom-photo" class="btn-upload-trigger">
@@ -1406,7 +1392,7 @@
                   <input type="date" id="input-wedding-datepicker" value="2025-11-22">
                 </div>
                 <div class="form-group">
-                  <label>Teks Tanggal (Tampil di Cover &amp; Hero)</label>
+                  <label>Teks Tanggal Pernikahan</label>
                   <input type="text" id="input-wedding-date" value="Sabtu, 22 November 2025">
                 </div>
               </div>
@@ -1469,20 +1455,20 @@
               </div>
             </section>
 
-            <!-- TAB 4: Galeri & Auto-WebP Compressor -->
+            <!-- TAB 4: Galeri Foto -->
             <section id="tab-galeri" class="tab-section">
               <div class="section-header">
-                <h2 class="section-title">Foto Utama &amp; Galeri (Auto-WebP)</h2>
-                <p class="section-desc">Foto otomatis dikompres ke format <b>.webp</b> ringan berkualitas tinggi langsung di browser.</p>
+                <h2 class="section-title">Foto Utama &amp; Galeri</h2>
+                <p class="section-desc">Unggah foto utama dan foto-foto momen bahagia Anda bersama pasangan.</p>
               </div>
 
-              <!-- Main Hero Photo -->
-              <div class="sub-heading">✨ Foto Utama / Prewedding (Hero &amp; Sampul)</div>
+              <!-- Main Photo -->
+              <div class="sub-heading">✨ Foto Utama / Prewedding</div>
               <div class="photo-upload-row">
-                <img id="hero-photo-thumb" src="assets/images/ZQI_0012.jpg" alt="Foto Hero" class="hero-photo-thumb">
+                <img id="hero-photo-thumb" src="assets/images/ZQI_0012.jpg" alt="Foto Utama" class="hero-photo-thumb">
                 <div class="photo-upload-info">
-                  <div class="photo-upload-title">Foto Sampul Utama</div>
-                  <div class="photo-upload-desc">Tampil di bingkai utama dan penutup undangan. Otomatis ter-update secara instan di preview.</div>
+                  <div class="photo-upload-title">Foto Utama / Prewedding</div>
+                  <div class="photo-upload-desc">Tampil di sampul dan pembuka undangan Anda.</div>
                   <div class="photo-upload-actions">
                     <input type="file" id="hero-photo-file" accept="image/*" style="display:none;">
                     <button type="button" id="btn-trigger-hero-photo" class="btn-upload-trigger">
@@ -1501,18 +1487,7 @@
                 <input type="file" id="file-uploader" accept="image/*" multiple style="display:none;">
                 <svg class="compressor-icon" viewBox="0 0 24 24"><path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM14 13v4h-4v-4H7l5-5 5 5h-3z"/></svg>
                 <div class="compressor-title">Sentuh atau Tarik Foto ke Sini</div>
-                <div class="compressor-subtitle">Mendukung JPEG, PNG, kamera HP (Otomatis WebP ~150 KB)</div>
-              </div>
-
-              <!-- Savings Banner -->
-              <div id="savings-banner" class="savings-banner" style="display:none;">
-                <div>
-                  <span>⚡ Penghematan Storage: </span>
-                  <span id="savings-percent">0%</span>
-                </div>
-                <div style="font-size:11px; opacity:0.85;">
-                  <span id="savings-raw">0 MB</span> ➔ <span id="savings-webp">0 KB</span>
-                </div>
+                <div class="compressor-subtitle">Pilih foto dari galeri atau kamera HP Anda</div>
               </div>
 
               <!-- Gallery Grid -->
@@ -1584,72 +1559,8 @@
                 <button class="btn btn-secondary prev-step-btn" data-prev="tab-galeri">
                   ⬅ Kembali
                 </button>
-                <button class="btn btn-primary next-step-btn" data-next="tab-tamu">
-                  Lanjut: Simulasi Tamu &amp; Buku Tamu ➔
-                </button>
-              </div>
-            </section>
-
-            <!-- TAB 6: Simulasi Tamu & Buku Tamu -->
-            <section id="tab-tamu" class="tab-section">
-              <div class="section-header">
-                <h2 class="section-title">Simulasi Tampilan Tamu &amp; Buku Tamu</h2>
-                <p class="section-desc">Uji coba tampilan nama tamu pada sampul undangan dan pastikan buku tamu bersih sebelum disebar.</p>
-              </div>
-
-              <!-- Integration Alert with Siap Nikah -->
-              <div style="background:#f0fdf4; border:1px solid #bbf7d0; border-radius:var(--radius-md); padding:16px 18px; margin-bottom:24px; display:flex; align-items:flex-start; gap:14px;">
-                <span style="font-size:24px; line-height:1;">💡</span>
-                <div style="font-size:13px; line-height:1.6; color:#166534;">
-                  <b style="font-size:14px; color:#14532d;">Terintegrasi dengan Aplikasi Siap Nikah:</b><br>
-                  Seluruh daftar nama tamu (keluarga pria/wanita, teman, rekan kantor, porsi katering, status kirim) serta <b>tombol kirim undangan via WhatsApp</b> dikelola langsung dari menu <b>Daftar Tamu Undangan</b> di aplikasi utama <b>Siap Nikah</b>.<br>
-                  Di dashboard builder ini, Anda fokus mendesain undangan dan menguji coba tampilan kartu nama tamu pada sampul pratinjau.
-                </div>
-              </div>
-
-              <!-- Simulasi Nama Tamu -->
-              <div class="guest-add-box" style="margin-bottom:24px;">
-                <div class="sub-heading" style="margin-top:0;">🎯 Uji Coba Nama Tamu di Sampul</div>
-                <p class="section-desc" style="margin-bottom:12px;">Ketik nama tamu di bawah untuk melihat langsung bagaimana namanya tercetak pada kartu sampul &amp; amplop di pratinjau HP:</p>
-                
-                <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px;">
-                  <input type="text" id="input-test-guest" placeholder="Contoh: Bpk. Bambang &amp; Istri" style="flex:1; min-width:240px; padding:10px 14px; border:1px solid var(--border); border-radius:var(--radius-sm); font-size:14px; font-weight:600;">
-                  <button type="button" id="btn-apply-test-guest" class="btn btn-primary" style="font-size:13px; padding:10px 18px;">
-                    👁️ Terapkan ke Pratinjau
-                  </button>
-                </div>
-
-                <div style="font-size:12px; color:var(--stone-500); margin-bottom:6px;">Contoh Cepat:</div>
-                <div style="display:flex; gap:8px; flex-wrap:wrap;">
-                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Keluarga Besar Legache 3.4" style="font-size:12px; padding:6px 12px;">Keluarga Besar Legache 3.4</button>
-                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Bpk. Bambang &amp; Istri" style="font-size:12px; padding:6px 12px;">Bpk. Bambang &amp; Istri</button>
-                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Sahabat Kuliah (Rizky &amp; Rina)" style="font-size:12px; padding:6px 12px;">Sahabat Kuliah (Rizky &amp; Rina)</button>
-                  <button type="button" class="btn btn-secondary btn-quick-guest" data-name="Ocha Geniarsyah" style="font-size:12px; padding:6px 12px;">Ocha Geniarsyah</button>
-                </div>
-              </div>
-
-              <!-- Reset / Management Wishes Section -->
-              <div style="margin-top:20px; padding:20px; border:1px solid var(--border); border-radius:var(--radius-md); background:var(--stone-50);">
-                <div class="sub-heading" style="margin-top:0; color:var(--stone-800);">💌 Kelola Buku Tamu &amp; Ucapan Doa Restu</div>
-                <p class="section-desc" style="margin-bottom:14px;">
-                  Sebelum undangan disebarkan secara resmi ke para tamu, kosongkan buku tamu agar tamu-tamu asli Anda yang mengisinya pertama kali.
-                </p>
-                <div style="display:flex; gap:10px; flex-wrap:wrap;">
-                  <button type="button" id="btn-clear-wishes" class="btn btn-secondary" style="color:#ef4444; border-color:#fca5a5;">
-                    🗑️ Kosongkan Buku Tamu (Mulai dari Nol)
-                  </button>
-                  <button type="button" id="btn-demo-wishes" class="btn btn-secondary">
-                    💡 Muat Contoh Ucapan (Simulasi Desain)
-                  </button>
-                </div>
-              </div>
-
-              <div class="step-actions">
-                <button class="btn btn-secondary prev-step-btn" data-prev="tab-rekening">
-                  ⬅ Kembali
-                </button>
                 <button id="btn-save-finish" class="btn btn-primary">
-                  💾 Simpan Semua Data
+                  💾 Simpan Desain Undangan
                 </button>
               </div>
             </section>
@@ -1783,6 +1694,13 @@
       }
     }
 
+    // Auto-respond when template finishes loading in iframe
+    window.addEventListener('message', (event) => {
+      if (event.data && event.data.type === 'TEMPLATE_READY') {
+        syncPreview();
+      }
+    });
+
     // Format Date Helper
     function formatIndonesianDate(isoStr) {
       if (!isoStr) return '';
@@ -1892,12 +1810,19 @@
         if (activeSt) activeSt.textContent = '✓ Aktif Digunakan';
 
         activeTemplate = tplFile;
-        if (iframe) iframe.src = tplFile;
+        if (iframe) {
+          iframe.src = tplFile;
+          iframe.onload = () => {
+            syncPreview();
+          };
+        }
         if (btnFullscreen) btnFullscreen.href = tplFile;
         if (coupleBadgeStatus) coupleBadgeStatus.textContent = `Template: ${tplName}`;
         
         showToast(`Beralih ke template: ${tplName}`);
-        setTimeout(syncPreview, 400);
+        setTimeout(syncPreview, 300);
+        setTimeout(syncPreview, 800);
+        setTimeout(syncPreview, 1500);
       });
     });
 
@@ -2125,7 +2050,7 @@
         triggerBtn.addEventListener('click', () => fileInput.click());
         fileInput.addEventListener('change', async (e) => {
           if (e.target.files && e.target.files[0]) {
-            showToast('Mengompres foto ke WebP...');
+            showToast('Mengunggah foto...');
             try {
               const res = await compressToWebP(e.target.files[0], 900, 0.82);
               thumb.src = res.dataUrl;
@@ -2198,14 +2123,12 @@
     }
 
     async function handleImageFiles(files) {
-      showToast(`Mengompres ${files.length} foto ke format WebP...`);
+      showToast(`Menambahkan ${files.length} foto ke galeri...`);
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         if (!file.type.startsWith('image/')) continue;
         try {
           const result = await compressToWebP(file);
-          totalRawBytes += result.rawSize;
-          totalWebpBytes += result.webpSize;
 
           state.gallery.push(result.dataUrl);
           if (!state.heroPhoto && state.gallery.length === 1) {
@@ -2217,21 +2140,12 @@
           const card = document.createElement('div');
           card.className = 'gallery-preview-item';
           card.innerHTML = `
-            <img src="${result.dataUrl}" alt="WebP Photo">
-            <span class="gallery-size-tag">${formatKB(result.webpSize)}</span>
+            <img src="${result.dataUrl}" alt="Foto Galeri">
           `;
           galleryGrid.appendChild(card);
         } catch(err) {
           console.error(err);
         }
-      }
-
-      if (totalRawBytes > 0) {
-        savingsBanner.style.display = 'flex';
-        const savedPercent = (((totalRawBytes - totalWebpBytes) / totalRawBytes) * 100).toFixed(1);
-        savingsPercent.textContent = `${savedPercent}% Lebih Hemat!`;
-        savingsRaw.textContent = formatKB(totalRawBytes);
-        savingsWebp.textContent = formatKB(totalWebpBytes);
       }
 
       syncPreview();

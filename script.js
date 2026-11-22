@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lightboxNext = document.getElementById('lightbox-next');
 
   let currentImgIndex = 0;
-  const imageSources = Array.from(galleryItems).map(item => item.getAttribute('data-full') || item.querySelector('img').src);
+  let imageSources = Array.from(galleryItems).map(item => item.getAttribute('data-full') || (item.querySelector('img') && item.querySelector('img').src) || '');
 
   function openLightbox(index) {
     currentImgIndex = index;
@@ -468,9 +468,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const closingSig = document.getElementById('closing-signature');
     if (closingSig) closingSig.innerHTML = `${brideNick} &amp; ${groomNick}`;
 
-    // Hero & Prewedding Main Photos (Prewedding Sampul)
+    // Cover, Hero & Prewedding Main Photos
     const mainPhoto = data.heroPhoto || (data.gallery && data.gallery[0]);
     if (mainPhoto) {
+      const coverPhoto = document.getElementById('cover-couple-photo');
+      if (coverPhoto) coverPhoto.src = mainPhoto;
       const heroPhoto = document.getElementById('hero-photo');
       if (heroPhoto) heroPhoto.src = mainPhoto;
       const closingPhoto = document.getElementById('closing-photo');
@@ -533,19 +535,28 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    // Gallery Photos
-    if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
-      const gItems = document.querySelectorAll('.gallery-item');
-      data.gallery.forEach((photoUrl, idx) => {
-        if (gItems[idx]) {
-          const img = gItems[idx].querySelector('img');
-          if (img) img.src = photoUrl;
-          gItems[idx].setAttribute('data-full', photoUrl);
-          if (typeof imageSources !== 'undefined' && imageSources[idx]) {
-            imageSources[idx] = photoUrl;
-          }
-        }
-      });
+    // Gallery Photos (Dynamic Rendering)
+    const galleryGrid = document.getElementById('gallery-grid') || document.querySelector('.gallery-grid');
+    if (galleryGrid) {
+      if (data.gallery && Array.isArray(data.gallery) && data.gallery.length > 0) {
+        galleryGrid.innerHTML = '';
+        imageSources = [...data.gallery];
+        data.gallery.forEach((photoUrl, idx) => {
+          const item = document.createElement('div');
+          item.className = `gallery-item ${idx % 3 === 0 ? 'tall' : 'wide'}`;
+          item.setAttribute('data-full', photoUrl);
+          item.innerHTML = `<img src="${photoUrl}" alt="Foto Galeri ${idx + 1}" loading="lazy">`;
+          item.addEventListener('click', () => openLightbox(idx));
+          galleryGrid.appendChild(item);
+        });
+      } else {
+        galleryGrid.innerHTML = `
+          <div class="gallery-placeholder-card">
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M20.4 14.5L16 10 4 20"/></svg>
+            <p>Momen bahagia kami akan segera hadir di sini</p>
+          </div>
+        `;
+      }
     }
 
     // Guest name test
@@ -588,4 +599,11 @@ document.addEventListener('DOMContentLoaded', () => {
       applyCustomData(event.data.payload);
     }
   });
+
+  // Notify builder parent window that template is ready
+  try {
+    if (window.parent && window.parent !== window) {
+      window.parent.postMessage({ type: 'TEMPLATE_READY' }, '*');
+    }
+  } catch(e) {}
 });
