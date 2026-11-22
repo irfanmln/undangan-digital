@@ -204,6 +204,248 @@
       pointer-events: none;
     }
 
+    /* Flying Birds Silhouette (Replicating Reference Lottie Birds) */
+    .birds-sky-wrap {
+      position: absolute;
+      top: 25px;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+    }
+
+    .birds-svg {
+      width: 130px;
+      height: 40px;
+      position: absolute;
+      top: 10px;
+      left: -140px;
+      animation: birdsFlyAcross 14s linear infinite;
+    }
+
+    .birds-svg .bird {
+      transform-origin: center;
+      animation: birdWingFlap 0.7s ease-in-out infinite alternate;
+    }
+
+    .birds-svg .bird-2 {
+      animation-delay: 0.15s;
+    }
+
+    .birds-svg .bird-3 {
+      animation-delay: 0.3s;
+    }
+
+    @keyframes birdsFlyAcross {
+      0% {
+        transform: translateX(0) translateY(12px) scale(0.7);
+        opacity: 0;
+      }
+      8% {
+        opacity: 0.85;
+      }
+      88% {
+        opacity: 0.85;
+      }
+      100% {
+        transform: translateX(650px) translateY(-25px) scale(0.85);
+        opacity: 0;
+      }
+    }
+
+    @keyframes birdWingFlap {
+      0% {
+        transform: scaleY(1);
+      }
+      100% {
+        transform: scaleY(0.55);
+      }
+    }
+
+    /* Floating Romantic Garden Petals / Leaves */
+    .floating-petals-overlay {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 500px;
+      height: 100%;
+      pointer-events: none;
+      z-index: 10001;
+      overflow: hidden;
+    }
+
+    .floating-petal {
+      position: absolute;
+      top: -40px;
+      user-select: none;
+      pointer-events: none;
+      font-size: 16px;
+      opacity: 0;
+      animation: petalFallFloat linear infinite;
+      will-change: transform, opacity;
+      filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+    }
+
+    .floating-petal.p1 { left: 12%; animation-duration: 11s; animation-delay: 0s; font-size: 14px; }
+    .floating-petal.p2 { left: 35%; animation-duration: 14s; animation-delay: 3s; font-size: 18px; }
+    .floating-petal.p3 { left: 58%; animation-duration: 12s; animation-delay: 1.5s; font-size: 15px; }
+    .floating-petal.p4 { left: 80%; animation-duration: 15s; animation-delay: 4.5s; font-size: 17px; }
+    .floating-petal.p5 { left: 24%; animation-duration: 13s; animation-delay: 7s; font-size: 13px; }
+    .floating-petal.p6 { left: 70%; animation-duration: 16s; animation-delay: 9s; font-size: 16px; }
+
+    @keyframes petalFallFloat {
+      0% {
+        opacity: 0;
+        transform: translateY(0) translateX(0) rotate(0deg);
+      }
+      10% {
+        opacity: 0.75;
+      }
+      85% {
+        opacity: 0.75;
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(105vh) translateX(65px) rotate(380deg);
+      }
+    }
+
+    /* Oval Photo Frame & Floral Garland Wreath (Matching Reference) */
+    .gate-frame-wrap {
+      position: relative;
+      width: 250px;
+      height: 270px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+      margin-bottom: 18px;
+      z-index: 3;
+    }
+
+    .gate-oval-photo-container {
+      width: 150px;
+      height: 230px;
+      border-radius: 500px;
+      overflow: hidden;
+      border: 3.5px solid #ffffff;
+      box-shadow: 0 5px 22px rgba(0, 0, 0, 0.32);
+      position: relative;
+      z-index: 1;
+      background: #446b77;
+      animation: gatePhotoZoomDown 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      will-change: transform, opacity;
+    }
+
+    .gate-oval-photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+
+    .gate-oval-photo-container .gate-monogram-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--teal-dark), var(--primary-teal));
+      letter-spacing: 2px;
+    }
+
+    .gate-floral-garland {
+      position: absolute;
+      top: -15px;
+      left: -20px;
+      width: 290px;
+      height: auto;
+      max-width: none;
+      pointer-events: none;
+      z-index: 2;
+      animation: floralWreathEntrance 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 0.3s backwards, floralBreathe 7s ease-in-out 2.1s infinite alternate;
+      will-change: transform;
+    }
+
+    @keyframes gatePhotoZoomDown {
+      0% {
+        opacity: 0;
+        transform: translateY(-40px) scale(0.85);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes floralWreathEntrance {
+      0% {
+        opacity: 0;
+        transform: scale(0.5) rotate(-6deg);
+      }
+      70% {
+        opacity: 1;
+        transform: scale(1.05) rotate(1.5deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg);
+      }
+    }
+
+    @keyframes floralBreathe {
+      0%, 100% {
+        transform: scale(1) rotate(0deg);
+      }
+      50% {
+        transform: scale(1.03) rotate(1.8deg);
+      }
+    }
+
+    @keyframes floralSwayLeft {
+      0%, 100% {
+        transform: rotate(0deg) scale(1);
+        transform-origin: bottom left;
+      }
+      50% {
+        transform: rotate(-3.5deg) scale(1.025);
+        transform-origin: bottom left;
+      }
+    }
+
+    @keyframes floralSwayRight {
+      0%, 100% {
+        transform: rotate(0deg) scale(1);
+        transform-origin: bottom right;
+      }
+      50% {
+        transform: rotate(3.5deg) scale(1.03);
+        transform-origin: bottom right;
+      }
+    }
+
+    @keyframes dividerShimmer {
+      0%, 100% {
+        filter: drop-shadow(0 0 1px rgba(196,154,69,0.2)) brightness(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 7px rgba(196,154,69,0.8)) brightness(1.15);
+      }
+    }
+
+    .divider-ornament-img {
+      animation: dividerShimmer 4s ease-in-out infinite;
+    }
+
     .gate-monogram-box {
       width: 110px;
       height: 110px;
@@ -238,11 +480,22 @@
 
     .gate-title {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 38px;
+      font-size: 36px;
       font-weight: 700;
       color: var(--primary-teal);
       line-height: 1.15;
-      margin-bottom: 24px;
+      margin-bottom: 8px;
+    }
+
+    .gate-date-tag {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--primary-teal);
+      margin-bottom: 20px;
+      opacity: 0.9;
     }
 
     .guest-card-box {
@@ -471,6 +724,44 @@
       margin-bottom: 24px;
       box-shadow: var(--shadow-card);
       position: relative;
+    }
+
+    .mempelai-avatar-wrap {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 16px;
+    }
+
+    .mempelai-avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: top center;
+      border: 3px solid var(--accent-gold);
+      box-shadow: 0 5px 16px rgba(0,0,0,0.18);
+      display: block;
+    }
+
+    .mempelai-floral-corner {
+      position: absolute;
+      width: 70px;
+      height: auto;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .mempelai-floral-corner.left {
+      top: -12px;
+      left: -22px;
+      animation: floralSwayLeft 5.5s ease-in-out infinite alternate;
+    }
+
+    .mempelai-floral-corner.right {
+      bottom: -12px;
+      right: -22px;
+      animation: floralSwayRight 6s ease-in-out infinite alternate;
     }
 
     .mempelai-role {
@@ -1249,14 +1540,40 @@
     <!-- RIGHT MAIN CONTENT (Interactive Mobile Flow) -->
     <div class="mobile-invitation-container">
 
+      <!-- Floating Romantic Garden Petals / Leaves -->
+      <div class="floating-petals-overlay" aria-hidden="true">
+        <div class="floating-petal p1">🌸</div>
+        <div class="floating-petal p2">🍃</div>
+        <div class="floating-petal p3">🌸</div>
+        <div class="floating-petal p4">🍃</div>
+        <div class="floating-petal p5">🌸</div>
+        <div class="floating-petal p6">🌸</div>
+      </div>
+
       <!-- 1. GATE / COVER OVERLAY -->
       <div id="gate-overlay" class="gate-overlay">
-        <div class="gate-monogram-box glow-gold">
-          <div id="gate-monogram-text" class="gate-monogram-inner">GH</div>
+        <!-- Flying Birds in Sky -->
+        <div class="birds-sky-wrap" aria-hidden="true">
+          <svg class="birds-svg" viewBox="0 0 160 50">
+            <path class="bird bird-1" d="M10 25 Q 18 12, 28 20 Q 38 12, 46 25 Q 38 21, 28 26 Q 18 21, 10 25 Z" fill="#2d3748" />
+            <path class="bird bird-2" d="M60 16 Q 66 6, 74 12 Q 82 6, 88 16 Q 82 13, 74 17 Q 66 13, 60 16 Z" fill="#2d3748" opacity="0.85" />
+            <path class="bird bird-3" d="M110 28 Q 115 20, 122 25 Q 129 20, 134 28 Q 129 26, 122 29 Q 115 26, 110 28 Z" fill="#2d3748" opacity="0.7" />
+          </svg>
+        </div>
+
+        <!-- Centerpiece: Oval Frame + Royal Floral Garland Wreath (Matching Reference) -->
+        <div class="gate-frame-wrap">
+          <div class="gate-oval-photo-container">
+            <img id="gate-couple-photo" src="assets/images/Alni-Raka.jpg" alt="Foto Mempelai" onerror="this.style.display='none'; document.getElementById('gate-monogram-fallback').style.display='flex';">
+            <div id="gate-monogram-fallback" class="gate-monogram-fallback" style="display:none;">GH</div>
+          </div>
+          <!-- Floral Garland Wreath overlay -->
+          <img src="assets/template2/Picture1-4.webp" alt="Floral Garland" class="gate-floral-garland">
         </div>
 
         <div class="gate-subtitle">The Wedding of</div>
         <h2 id="gate-couple-names" class="gate-title">Gini &amp; Hafid</h2>
+        <div id="gate-wedding-date" class="gate-date-tag">SABTU, 15 AGUSTUS 2026</div>
 
         <div class="guest-card-box">
           <div class="guest-card-label">Kepada Bapak/Ibu/Saudara/i</div>
@@ -1272,6 +1589,14 @@
       <!-- 2. HERO / OPENING -->
       <section class="section-hero">
         <div class="hero-bg-motion"></div>
+        <!-- Flying Birds in Hero Sky -->
+        <div class="birds-sky-wrap" style="top: 15px;" aria-hidden="true">
+          <svg class="birds-svg" style="animation-delay: 2s;" viewBox="0 0 160 50">
+            <path class="bird bird-1" d="M10 25 Q 18 12, 28 20 Q 38 12, 46 25 Q 38 21, 28 26 Q 18 21, 10 25 Z" fill="#ffffff" opacity="0.75" />
+            <path class="bird bird-2" d="M60 16 Q 66 6, 74 12 Q 82 6, 88 16 Q 82 13, 74 17 Q 66 13, 60 16 Z" fill="#ffffff" opacity="0.6" />
+            <path class="bird bird-3" d="M110 28 Q 115 20, 122 25 Q 129 20, 134 28 Q 129 26, 122 29 Q 115 26, 110 28 Z" fill="#ffffff" opacity="0.5" />
+          </svg>
+        </div>
         <div class="hero-arch-frame reveal-on-scroll zoom-in">
           <div class="hero-pretitle">The Wedding Of</div>
           <h1 id="hero-couple-names" class="hero-couple-names">Gini &amp; Hafid</h1>
@@ -1298,6 +1623,10 @@
 
         <!-- Mempelai Wanita -->
         <div class="mempelai-card reveal-on-scroll fade-left delay-2">
+          <div class="mempelai-avatar-wrap">
+            <img id="bride-photo" src="assets/images/ZQI_0161-682x1024.jpg" alt="Mempelai Wanita" class="mempelai-avatar-img">
+            <img src="assets/images/Art-8-Bunga-Kiri-S2.webp" alt="Floral" class="mempelai-floral-corner left">
+          </div>
           <div class="mempelai-role">Mempelai Wanita</div>
           <h3 id="bride-fullname" class="mempelai-fullname">Gini Aprilliani M.Ag</h3>
           <p id="bride-parents" class="mempelai-parents">Putri dari Bapak Apad Supadma (Alm) &amp; Ibu Ai Rosnawati</p>
@@ -1311,6 +1640,10 @@
 
         <!-- Mempelai Pria -->
         <div class="mempelai-card reveal-on-scroll fade-right delay-3">
+          <div class="mempelai-avatar-wrap">
+            <img id="groom-photo" src="assets/images/ZQI_0154.jpg" alt="Mempelai Pria" class="mempelai-avatar-img">
+            <img src="assets/images/Art-8-Bunga-Kanan-S2.png" alt="Floral" class="mempelai-floral-corner right">
+          </div>
           <div class="mempelai-role">Mempelai Pria</div>
           <h3 id="groom-fullname" class="mempelai-fullname">Muhammad Hafidhuddien S.Ag</h3>
           <p id="groom-parents" class="mempelai-parents">Putra dari Bapak Azis Subchan Subiyanto &amp; Ibu Nina Nurhanizar Nasution</p>
@@ -1479,7 +1812,13 @@
 
       <!-- 9. CLOSING & SALAM -->
       <section class="section-closing">
-        <div id="closing-monogram" class="closing-monogram reveal-on-scroll zoom-in glow-gold">GH</div>
+        <div class="gate-frame-wrap reveal-on-scroll zoom-in" style="margin: 0 auto 20px; transform-origin: center;">
+          <div class="gate-oval-photo-container">
+            <img id="closing-couple-photo" src="assets/images/Alni-Raka.jpg" alt="Foto Mempelai" onerror="this.style.display='none'; document.getElementById('closing-monogram-fallback').style.display='flex';">
+            <div id="closing-monogram-fallback" class="gate-monogram-fallback" style="display:none;">GH</div>
+          </div>
+          <img src="assets/template2/Picture1-4.webp" alt="Floral Garland" class="gate-floral-garland">
+        </div>
         <p class="closing-text reveal-on-scroll delay-1">
           Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu. Atas kehadiran dan doa restunya, kami mengucapkan terima kasih.
         </p>
@@ -1669,9 +2008,17 @@
       document.title = `The Wedding of ${bShort} & ${gShort}`;
 
       // Monograms
-      document.getElementById('gate-monogram-text').textContent = initials;
-      document.getElementById('quote-monogram').textContent = initials;
-      document.getElementById('closing-monogram').textContent = initials;
+      const gateMono = document.getElementById('gate-monogram-text');
+      if (gateMono) gateMono.textContent = initials;
+      const quoteMono = document.getElementById('quote-monogram');
+      if (quoteMono) quoteMono.textContent = initials;
+      const closingMono = document.getElementById('closing-monogram');
+      if (closingMono) closingMono.textContent = initials;
+
+      const gateFallback = document.getElementById('gate-monogram-fallback');
+      const closingFallback = document.getElementById('closing-monogram-fallback');
+      if (gateFallback) gateFallback.textContent = initials;
+      if (closingFallback) closingFallback.textContent = initials;
 
       // Names
       document.getElementById('gate-couple-names').textContent = couplePair;
@@ -1688,8 +2035,31 @@
       // Dates (Sync across Gate, Hero, and Desktop)
       const effectiveDate = (data.weddingDate || (data.akad && data.akad.date) || '').toUpperCase();
       document.getElementById('hero-wedding-date').textContent = effectiveDate;
+      const gateDate = document.getElementById('gate-wedding-date');
+      if (gateDate) gateDate.textContent = effectiveDate;
       const deskDate = document.getElementById('desk-wedding-date');
       if (deskDate) deskDate.textContent = effectiveDate;
+
+      // Couple Photo on Gate & Closing
+      const coupleImg = data.heroPhoto || (data.gallery && data.gallery[0]) || 'assets/images/Alni-Raka.jpg';
+      const gatePhoto = document.getElementById('gate-couple-photo');
+      const closingPhoto = document.getElementById('closing-couple-photo');
+      if (gatePhoto) {
+        gatePhoto.src = coupleImg;
+        gatePhoto.style.display = 'block';
+        if (gateFallback) gateFallback.style.display = 'none';
+      }
+      if (closingPhoto) {
+        closingPhoto.src = coupleImg;
+        closingPhoto.style.display = 'block';
+        if (closingFallback) closingFallback.style.display = 'none';
+      }
+
+      // Bride & Groom Individual Photos
+      const brideImg = document.getElementById('bride-photo');
+      const groomImg = document.getElementById('groom-photo');
+      if (brideImg && data.bride.photo) brideImg.src = data.bride.photo;
+      if (groomImg && data.groom.photo) groomImg.src = data.groom.photo;
 
       // Hero Photo / Motion Background
       const mainPhoto = data.heroPhoto || (data.gallery && data.gallery[0]);

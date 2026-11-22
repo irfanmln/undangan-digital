@@ -1545,6 +1545,120 @@ footer {
   transform: translateY(0);
 }
 
+/* ==========================================================================
+   LIVING FLORAL & BOTANICAL ANIMATIONS
+   Organic sway, breath, and gentle wind motion for all flower ornaments
+   ========================================================================== */
+@keyframes floralSwayLeft {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    transform-origin: bottom left;
+  }
+  50% {
+    transform: rotate(-3.5deg) scale(1.025);
+    transform-origin: bottom left;
+  }
+}
+
+@keyframes floralSwayRight {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    transform-origin: bottom right;
+  }
+  50% {
+    transform: rotate(3.5deg) scale(1.03);
+    transform-origin: bottom right;
+  }
+}
+
+@keyframes floralBreathe {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.035) translateY(-5px);
+  }
+}
+
+@keyframes floralFloatGentle {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(1.8deg);
+  }
+}
+
+@keyframes peacockSway {
+  0%, 100% {
+    transform: rotate(0deg) scale(1);
+    transform-origin: bottom center;
+  }
+  50% {
+    transform: rotate(1.8deg) scale(1.015);
+    transform-origin: bottom center;
+  }
+}
+
+/* Apply continuous sway to flowers and botanicals */
+.top-right-flowers {
+  animation: floralSwayRight 6.5s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+.top-left-palm {
+  animation: floralSwayLeft 7.5s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+.top-left-purple {
+  animation: floralFloatGentle 5s ease-in-out infinite !important;
+  will-change: transform;
+}
+
+.bottom-flower-cluster {
+  animation: floralBreathe 6s ease-in-out infinite !important;
+  will-change: transform;
+}
+
+.peacock-left {
+  animation: peacockSway 8s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+.peacock-right {
+  animation: peacockSway 8.5s ease-in-out 1s infinite alternate !important;
+  will-change: transform;
+}
+
+.hero-flower-left {
+  animation: floralSwayLeft 5.2s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+.hero-flower-right {
+  animation: floralSwayRight 5.8s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+.profile-flower:first-of-type {
+  animation: floralSwayLeft 5.5s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+.profile-flower:last-of-type {
+  animation: floralSwayRight 6s ease-in-out infinite alternate !important;
+  will-change: transform;
+}
+
+.tree-left {
+  animation: floralSwayLeft 9s ease-in-out infinite alternate !important;
+}
+
+.tree-right {
+  animation: floralSwayRight 9.5s ease-in-out 0.5s infinite alternate !important;
+}
+
 /* Responsive adjustments */
 @media (max-width: 380px) {
   .name-alni, .name-raka { font-size: 55px; }
